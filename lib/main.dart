@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:monster/screens/home.dart';
+import 'package:monster/screens/portfolio.dart';
 import 'package:monster/utils/ColorUtils.dart';
 import 'package:monster/widgets/monsterbar.dart';
 
@@ -15,8 +17,8 @@ class MyApp extends StatelessWidget {
       ),
       home: new Scaffold(
         appBar: MonsterBar(),
-        backgroundColor: ColorUtils.fromHex("#212121"),
-      ),
+        backgroundColor: ColorUtils.fromHex("#212121")
+      )
     );
   }
 }
