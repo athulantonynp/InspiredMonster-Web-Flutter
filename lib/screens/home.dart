@@ -14,7 +14,23 @@ class HomeState extends State<Home>{
   Widget build(BuildContext context) {
 
     return Scaffold(
-      body: Text("Home"),
+      backgroundColor: ColorUtils.fromHex("#212121"),
+      body: new Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          
+         Container(
+           height: ((MediaQuery.of(context).size.height*85)/100),
+           color: Colors.red,
+         ),
+
+           Container(
+           height:  ((MediaQuery.of(context).size.height*15)/100),
+           color: Colors.blue,
+         )
+        
+        ],
+      ),
     );
   }
 
