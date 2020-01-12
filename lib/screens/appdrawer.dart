@@ -1,8 +1,7 @@
 import 'dart:js';
 import 'package:flutter/material.dart';
 import 'package:monster/screens/portfolio.dart';
-
-import 'home.dart';
+import 'package:monster/screens/home.dart';
 
 class AppDrawer {
   
@@ -25,9 +24,8 @@ class AppDrawer {
               padding: EdgeInsets.all(8.0),
               splashColor: Colors.grey,
               onPressed: () {
-                 
                 navigatorKey.currentState.push(MaterialPageRoute(builder: (context)=> Home()));
-                Navigator.pop(context);
+                print(Navigator.pop(context));
               },
               child: Text(
                 "Home",
@@ -49,7 +47,7 @@ class AppDrawer {
               onPressed: () {
                  
                navigatorKey.currentState.push(MaterialPageRoute(builder: (context)=> Portfolio()));
-               Navigator.pop(context);
+               print(Navigator.pop(context));
               },
               child: Text(
                 "Portfolio",
