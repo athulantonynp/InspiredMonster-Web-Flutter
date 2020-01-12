@@ -57,7 +57,7 @@ class MonsterBarState extends State<MonsterBar> {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Scaffold.of(context).openDrawer();
+                  Scaffold.of(context).openEndDrawer();
                 },
               ),
               padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
