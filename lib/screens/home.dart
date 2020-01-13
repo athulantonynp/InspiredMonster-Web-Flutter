@@ -17,10 +17,8 @@ class HomeState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: Container(
-              color: Colors.white,
-            ),
-            flex: 12,
+            child:getBodyContent(context) ,
+            flex: 13,
           ),
           Expanded(
             child: getFooter(context),
@@ -31,6 +29,33 @@ class HomeState extends State<Home> {
     );
   }
 
+  Widget getBodyContent(BuildContext context){
+    return Container(
+              color: ColorUtils.fromHex("#121212"),
+              child: Stack(
+                children: <Widget>[
+                    getBackground()
+                ],
+              ),
+    );
+  }
+
+  Widget getBackground(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        Expanded(
+          child: Container(color: ColorUtils.fromHex("#121212"),),
+          flex: 7,
+        ),
+        Expanded(
+          child: Container(color: ColorUtils.fromHex("#181818"),),
+          flex: 3,
+        )
+      ],
+    );
+  }
+
   Widget getFooter(BuildContext context) {
     return Container(
       color: Colors.black,
@@ -38,7 +63,7 @@ class HomeState extends State<Home> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-            height: 2,
+            height: 1,
             color: ColorUtils.fromHex("#212121"),
           ),
           Stack(
