@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:monster/utils/ColorUtils.dart';
 
@@ -34,9 +36,45 @@ class HomeState extends State<Home> {
               color: ColorUtils.fromHex("#121212"),
               child: Stack(
                 children: <Widget>[
-                    getBackground()
+                    getBackground(),
+                    getHomeContent()
+
                 ],
               ),
+    );
+  }
+
+  Widget getHomeContent(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      verticalDirection: VerticalDirection.down,
+      children: <Widget>[
+          getIntroText()
+      ],
+    );
+  }
+
+  Widget getIntroText(){
+    return Container(
+      width: double.infinity,
+      child:  Padding(
+      padding: EdgeInsets.fromLTRB(16, 24, 16, 16),
+      child: RichText(
+        textAlign: TextAlign.center,
+      text: new TextSpan(
+        style: TextStyle(color: Colors.white),
+        children: <TextSpan>[
+          TextSpan(text: "I’m"),
+          TextSpan(text: " Arun Sajeev.",style: TextStyle(fontWeight: FontWeight.bold)),
+           TextSpan(text: " A Product designer based in Kochi. Currently working at Entri, focused on"),
+            TextSpan(text: " User Experience ",style: TextStyle(fontWeight: FontWeight.bold)),
+             TextSpan(text: "and"),
+              TextSpan(text: " Illustration.",style: TextStyle(fontWeight: FontWeight.bold))
+        ]
+      ),
+    ),
+    ),
     );
   }
 
