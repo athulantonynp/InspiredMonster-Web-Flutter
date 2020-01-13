@@ -27,7 +27,6 @@ class MonsterBarState extends State<MonsterBar> {
   @override
   Widget build(BuildContext context) {
     return new Container(
-        color: Colors.black,
         height: 60.0,
         decoration: new BoxDecoration(
           color: Colors.black,

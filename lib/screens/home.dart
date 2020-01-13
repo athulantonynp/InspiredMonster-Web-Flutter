@@ -19,18 +19,59 @@ class HomeState extends State<Home>{
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           
-         Container(
-           height: ((MediaQuery.of(context).size.height*85)/100),
-           color: Colors.red,
+         Expanded(
+           child: Container(color: Colors.white,),
+           flex: 12,
          ),
 
-           Container(
-           height:  ((MediaQuery.of(context).size.height*15)/100),
-           color: Colors.blue,
-         )
+          Expanded(
+           child: getFooter(context),
+           flex: 1,
+         ),
         
         ],
       ),
+    );
+  }
+
+  Widget getFooter(BuildContext context){
+    return Container(
+      color: Colors.black,
+      child: Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+          Container(
+            height: 2,
+            color: ColorUtils.fromHex("#212121"),
+          ),
+          Row(
+            children: <Widget>[
+              Expanded(
+            child:
+              Align(
+                alignment: Alignment.center,
+                child: Text("© 2020 Inspired Monster",style: TextStyle(color:ColorUtils.fromHex("#757575")),),
+              )
+            ,
+            flex: 9,
+          ),
+          Expanded(
+            child:Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
+              child: IconButton(
+                icon: Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                ), onPressed: () {},
+          
+          ),
+            ),
+          flex: 0,
+          )
+            ],
+          )
+      ],
+    ),
     );
   }
 
