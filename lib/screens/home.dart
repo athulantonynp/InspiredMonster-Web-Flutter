@@ -1,78 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:monster/utils/ColorUtils.dart';
 
-class Home extends StatefulWidget{
+class Home extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return HomeState();
   }
-
 }
 
-class HomeState extends State<Home>{
+class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: ColorUtils.fromHex("#212121"),
       body: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          
-         Expanded(
-           child: Container(color: Colors.white,),
-           flex: 12,
-         ),
-
           Expanded(
-           child: getFooter(context),
-           flex: 1,
-         ),
-        
+            child: Container(
+              color: Colors.white,
+            ),
+            flex: 12,
+          ),
+          Expanded(
+            child: getFooter(context),
+            flex: 1,
+          ),
         ],
       ),
     );
   }
 
-  Widget getFooter(BuildContext context){
+  Widget getFooter(BuildContext context) {
     return Container(
       color: Colors.black,
       child: Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
           Container(
             height: 2,
             color: ColorUtils.fromHex("#212121"),
           ),
-          Row(
+          Stack(
+            alignment: Alignment.center,
             children: <Widget>[
-              Expanded(
-            child:
+              Row(
+                
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text( "© 2020 Inspired Monster", style: TextStyle(color: ColorUtils.fromHex("#757575")),
+                textAlign: TextAlign.center,)
+                ],
+              ),
               Align(
-                alignment: Alignment.center,
-                child: Text("© 2020 Inspired Monster",style: TextStyle(color:ColorUtils.fromHex("#757575")),),
+                alignment: Alignment.centerRight,
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {},
+                  ),
+                ),
               )
-            ,
-            flex: 9,
-          ),
-          Expanded(
-            child:Padding(
-              padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
-              child: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                ), onPressed: () {},
-          
-          ),
-            ),
-          flex: 0,
-          )
             ],
           )
-      ],
-    ),
+        ],
+      ),
     );
   }
-
 }
