@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:monster/utils/ColorUtils.dart';
+import 'package:monster/utils/utils.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -37,21 +38,33 @@ class HomeState extends State<Home> {
               child: Stack(
                 children: <Widget>[
                     getBackground(),
-                    getHomeContent()
+                    getHomeContent(context)
 
                 ],
               ),
     );
   }
 
-  Widget getHomeContent(){
+  Widget getHomeContent(BuildContext context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       verticalDirection: VerticalDirection.down,
       children: <Widget>[
-          getIntroText()
+          getIntroText(),
+          getImage(context)
       ],
+    );
+  }
+
+  Widget getImage(BuildContext context){
+    return Container(
+      width: double.infinity,
+      child:  Container(
+      width: (MediaQuery.of(context).size.width*60)/100,
+      height: (MediaQuery.of(context).size.width*30)/100,
+      child:  Image.asset(Utils.getImageForWeb("ic_computer.png")),
+    ),
     );
   }
 
