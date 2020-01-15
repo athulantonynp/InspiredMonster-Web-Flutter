@@ -51,7 +51,11 @@ class HomeState extends State<Home> {
       mainAxisAlignment: MainAxisAlignment.start,
       verticalDirection: VerticalDirection.down,
       children: <Widget>[
-           getIntroText(),getSocialIcons(context),
+           getIntroText(),
+           getSocialIcons(context),
+           Container(
+             height: (MediaQuery.of(context).size.height*17)/100,
+           ),
          getImage(context)
       ],
     );
@@ -105,14 +109,15 @@ class HomeState extends State<Home> {
         return 260;
     }
     if(width>600 && width<1000){
-        return 300;
+        return 320;
     }
     if(width>1000){
-      return 360;
+      return 400;
     }
     if(width<400){
       return 200;
     }
+    return 460;
   }
 
 
