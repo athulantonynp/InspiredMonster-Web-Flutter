@@ -48,7 +48,7 @@ class HomeState extends State<Home> {
   Widget getHomeContent(BuildContext context){
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       verticalDirection: VerticalDirection.down,
       children: <Widget>[
           getIntroText(),
@@ -58,11 +58,13 @@ class HomeState extends State<Home> {
   }
 
   Widget getImage(BuildContext context){
+    print(MediaQuery.of(context).size.height);
+    print(MediaQuery.of(context).size.width);
     return Container(
       width: double.infinity,
-      child:  Container(
-      width: (MediaQuery.of(context).size.width*60)/100,
-      height: (MediaQuery.of(context).size.width*30)/100,
+      child:  SizedBox(
+      width: 360,
+      height:360,
       child:  Image.asset(Utils.getImageForWeb("ic_computer.png")),
     ),
     );
