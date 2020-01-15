@@ -187,10 +187,7 @@ class HomeState extends State<Home> {
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
                   child: IconButton(
-                    icon: Icon(
-                      Icons.menu,
-                      color: Colors.white,
-                    ),
+                    icon: Image.asset(Utils.getImageForWeb("ic_mode_light.png")),
                     onPressed: () {},
                   ),
                 ),
