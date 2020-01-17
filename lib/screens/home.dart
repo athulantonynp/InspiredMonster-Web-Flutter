@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:monster/utils/ColorUtils.dart';
 import 'package:monster/utils/utils.dart';
+import 'package:monster/widgets/bottombar.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -24,7 +25,7 @@ class HomeState extends State<Home> {
             flex: 13,
           ),
           Expanded(
-            child: getFooter(context),
+            child: BottomBar(),
             flex: 1,
           ),
         ],
@@ -160,42 +161,5 @@ class HomeState extends State<Home> {
     );
   }
 
-  Widget getFooter(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            height: 1,
-            color: ColorUtils.fromHex("#212121"),
-          ),
-          Stack(
-            alignment: Alignment.center,
-            children: <Widget>[
-              Row(
-                
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text( "© 2020 Inspired Monster", style: TextStyle(color: ColorUtils.fromHex("#757575")),
-                textAlign: TextAlign.center,)
-                ],
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                  child: IconButton(
-                    icon: Image.asset(Utils.getImageForWeb("ic_mode_light.png")),
-                    onPressed: () {},
-                  ),
-                ),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
+
 }
