@@ -35,6 +35,13 @@ class PortfolioState extends State<Portfolio> {
   }
 
   Widget getBodyContent(BuildContext context) {
+    int count;
+
+    if (MediaQuery.of(context).orientation == Orientation.landscape)
+      count = 4;
+    else
+      count = 2;
+
     return Container(
       color: ColorUtils.fromHex("#121212"),
       child: FutureBuilder(
@@ -44,7 +51,7 @@ class PortfolioState extends State<Portfolio> {
             return GridView.builder(
               shrinkWrap: true,
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4),
+                  crossAxisCount: count),
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return Column(
