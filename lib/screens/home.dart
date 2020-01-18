@@ -77,17 +77,17 @@ class HomeState extends State<Home> {
   }
 
   Widget getHomeContent(BuildContext context){
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      verticalDirection: VerticalDirection.down,
+    return
+    Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
            getIntroText(),
            getSocialIcons(context),
-           Container(
-             height: (MediaQuery.of(context).size.height*17)/100,
-           ),
-         getImage(context)
+           Spacer(flex: 2,),
+           getImage(context),
+           Spacer(flex: 1,)
+         
       ],
     );
   }
@@ -137,16 +137,16 @@ class HomeState extends State<Home> {
   double getComputerWidth(double width){
     
     if(width<600 && width>400){
-        return 260;
+        return 280;
     }
     if(width>600 && width<1000){
-        return 320;
+        return 340;
     }
     if(width>1000){
-      return 400;
+      return 420;
     }
     if(width<400){
-      return 200;
+      return 220;
     }
     return 460;
   }
