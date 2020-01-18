@@ -64,22 +64,6 @@ class HomeState extends State<Home> {
    
   }
 
-  Widget getHomeContentMainOld(){
-   return new Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            child:getBodyContent(context) ,
-            flex: 13,
-          ),
-          Expanded(
-            child: BottomBar(),
-            flex: 1,
-          ),
-        ],
-      );
-  }
-
   Widget getBodyContent(BuildContext context){
     return Container(
               color: ColorUtils.fromHex("#121212"),
