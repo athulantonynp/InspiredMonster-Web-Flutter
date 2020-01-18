@@ -66,12 +66,13 @@ class PortfolioState extends State<Portfolio> {
               },
             );
           } else {
-            return SizedBox(
-                height: 300.0,
-                width: 300.0,
-                child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(Colors.white),
-                    strokeWidth: 5.0));
+            return Center(
+              child: SizedBox(
+                width: 40,
+                height: 40,
+                child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white)),
+              ),
+            );
           }
         },
       ),
@@ -97,5 +98,4 @@ class PortfolioState extends State<Portfolio> {
       elevation: 3,
     );
   }
-
 }

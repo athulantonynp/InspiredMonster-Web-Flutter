@@ -14,7 +14,6 @@ class BottomBar extends StatefulWidget{
 class BottomBarState extends State<BottomBar>{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return  Container(
       color: Colors.black,
       child: Column(
@@ -42,10 +41,14 @@ class BottomBarState extends State<BottomBar>{
                 alignment: Alignment.centerRight,
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
-                  child: IconButton(
+                  child: SizedBox(
+                    height: 48,
+                    width: 48,
+                    child: IconButton(
                     icon:
-                        Image.asset(Utils.getImageForWeb("ic_mode_light.png")),
+                        Image.asset(Utils.getImageForWeb("ic_mode_light.png"),height: 20,width: 20,),
                     onPressed: () {},
+                  ),
                   ),
                 ),
               )
