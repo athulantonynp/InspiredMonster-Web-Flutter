@@ -18,3 +18,11 @@ flutter:
   uses-material-design: true
   assets:
     - web/assets/
+  fonts:    
+    - family: Roboto
+      fonts:
+      - asset: web/assets/fonts/r.ttf
+      - asset: web/assets/fonts/m.ttf
+        weight: 500
+      - asset: web/assets/fonts/i.ttf
+        style: italic

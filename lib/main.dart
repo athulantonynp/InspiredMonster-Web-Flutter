@@ -15,6 +15,7 @@ class MonsterApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: ColorUtils.primaryBlack,
+        fontFamily: 'Roboto'
       ),
       home: new MainFrame()
     );
