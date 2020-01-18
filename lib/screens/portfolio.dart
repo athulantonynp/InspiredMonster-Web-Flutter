@@ -49,7 +49,9 @@ class PortfolioState extends State<Portfolio> {
         future: ports,
         builder: (BuildContext context, AsyncSnapshot<List<Shot>> snapshot) {
           if (snapshot.hasData) {
-            return GridView.builder(
+            return Padding(
+              padding: EdgeInsets.fromLTRB(8, 16, 8, 16),
+               child:GridView.builder(
               shrinkWrap: true,
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: count),
@@ -64,6 +66,7 @@ class PortfolioState extends State<Portfolio> {
                   ],
                 );
               },
+            )
             );
           } else {
             return Center(
