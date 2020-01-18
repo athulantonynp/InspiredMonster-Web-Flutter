@@ -5,7 +5,6 @@ import 'package:monster/utils/utils.dart';
 class BottomBar extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return BottomBarState();
   }
 
@@ -20,11 +19,15 @@ class BottomBarState extends State<BottomBar>{
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Container(
+          Expanded(
+            child: Container(
             height: 1,
             color: ColorUtils.fromHex("#212121"),
           ),
-          Stack(
+          flex: 1,
+          ),
+         Expanded(
+           child:  Stack(
             alignment: Alignment.center,
             children: <Widget>[
               Row(
@@ -54,7 +57,9 @@ class BottomBarState extends State<BottomBar>{
                 ),
               )
             ],
-          )
+          ),
+          flex: 99,
+         )
         ],
       ),
     );
