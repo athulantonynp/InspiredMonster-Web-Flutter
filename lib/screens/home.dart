@@ -17,7 +17,55 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorUtils.fromHex("#212121"),
-      body: new Column(
+      body:LayoutBuilder(
+        builder: (context,constraints){
+          return getHomeContentMain(context, constraints.maxWidth, constraints.maxHeight);
+        },
+      ) ,
+    );
+  }
+
+  Widget getHomeContentMain(BuildContext context,double width,double height){
+    var mainContainerHeight=getMainContainerHeight(height);
+    var bottomBarHeight=getBottomBarHeight(height);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+          Container(
+            height: mainContainerHeight,
+            width: width,
+            child: getBodyContent(context),
+          ),
+           Container(
+            height: bottomBarHeight,
+            width:width,
+            child:BottomBar(),
+          )
+      ],
+    );
+  }
+
+  double getMainContainerHeight(double height){
+    if(height>700){
+         return (height*93)/100;
+    }else{
+      return (height*90)/100;
+    }
+   
+  }
+
+  double getBottomBarHeight(double height){
+    if(height>700){
+       return (height*7)/100;
+    }else{
+       return (height*10)/100;
+    }
+   
+  }
+
+  Widget getHomeContentMainOld(){
+   return new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
@@ -29,8 +77,7 @@ class HomeState extends State<Home> {
             flex: 1,
           ),
         ],
-      ),
-    );
+      );
   }
 
   Widget getBodyContent(BuildContext context){

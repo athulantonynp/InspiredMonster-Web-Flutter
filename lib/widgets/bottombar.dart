@@ -18,6 +18,7 @@ class BottomBarState extends State<BottomBar>{
       color: Colors.black,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
             height: 1,
