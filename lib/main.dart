@@ -17,6 +17,7 @@ class MonsterApp extends StatelessWidget {
         primarySwatch: ColorUtils.primaryBlack,
         fontFamily: 'Roboto'
       ),
+
       home: new MainFrame()
     );
   }
