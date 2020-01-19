@@ -1,6 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:monster/utils/ColorUtils.dart';
+import 'package:monster/utils/ThemeUtils.dart';
 import 'package:monster/utils/utils.dart';
+import 'package:monster/widgets/ThemeInheritedWidget.dart';
 
 class BottomBar extends StatefulWidget{
   @override
@@ -50,8 +54,13 @@ class BottomBarState extends State<BottomBar>{
                     width: 48,
                     child: IconButton(
                     icon:
-                        Image.asset(Utils.getImageForWeb("ic_mode_light.png"),height: 20,width: 20,),
-                    onPressed: () {},
+                        Image.asset(Utils.getImageForWeb(
+                          ThemeInheritedWidget.of(context).themeBloc.isDarkEnabled ?"ic_mode_light.png" : "ic_night_mode.png"),height: 20,width: 20,),
+                    onPressed: () {
+                      setState(() {
+                      ThemeInheritedWidget.of(context).themeBloc.changeTheme;
+                      });
+                    },
                   ),
                   ),
                 ),

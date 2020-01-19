@@ -1,6 +1,24 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import 'ColorUtils.dart';
+
+class ThemeBloc{
+
+  var isDark=true;
+
+  final _themeController=StreamController<bool>();
+  get changeTheme {
+      isDark=!isDark;
+     _themeController.sink.add(isDark);
+  }
+  get darkEnabled => _themeController.stream;
+
+  get isDarkEnabled{
+    return isDark;
+  }
+}
 
 class ThemeUtils{
   final ThemeData darkTheme = _buildDarkTheme();
@@ -26,7 +44,7 @@ class ThemeUtils{
     accentColor: ColorUtils.fromHex("#F6F6F6"),
     backgroundColor:ColorUtils.fromHex("#FFFFFF") ,
     canvasColor: Colors.transparent,
-      bottomAppBarColor: ColorUtils.fromHex("#181d24"),
+      bottomAppBarColor: ColorUtils.fromHex("#29000000"),
     buttonColor: Colors.white,
     indicatorColor: Colors.black,
       selectedRowColor: ColorUtils.fromHex("#CFCFCF"),
