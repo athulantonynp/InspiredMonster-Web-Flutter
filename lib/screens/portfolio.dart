@@ -18,7 +18,7 @@ class PortfolioState extends State<Portfolio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorUtils.fromHex("#212121"),
+      backgroundColor: Theme.of(context).primaryColor,
       body: new Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
@@ -44,7 +44,7 @@ class PortfolioState extends State<Portfolio> {
       count = 2;
 
     return Container(
-      color: ColorUtils.fromHex("#121212"),
+      color: Theme.of(context).backgroundColor,
       child: FutureBuilder(
         future: ports,
         builder: (BuildContext context, AsyncSnapshot<List<Shot>> snapshot) {

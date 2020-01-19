@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:monster/utils/ColorUtils.dart';
+import 'package:monster/utils/ThemeUtils.dart';
 import 'package:monster/utils/utils.dart';
 import 'package:monster/widgets/bottombar.dart';
 
@@ -16,7 +17,7 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorUtils.fromHex("#212121"),
+      backgroundColor: Theme.of(context).primaryColor,
       body: LayoutBuilder(
         builder: (context, constraints) {
           return getHomeContentMain(
@@ -65,7 +66,7 @@ class HomeState extends State<Home> {
 
   Widget getBodyContent(BuildContext context) {
     return Container(
-      color: ColorUtils.fromHex("#121212"),
+      color: Theme.of(context).backgroundColor,
       child: Stack(
         children: <Widget>[getBackground(), getHomeContent(context)],
       ),

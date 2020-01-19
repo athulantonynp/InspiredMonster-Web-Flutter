@@ -29,10 +29,10 @@ class MonsterBarState extends State<MonsterBar> {
     return new Container(
         height: 60.0,
         decoration: new BoxDecoration(
-          color: Colors.black,
+          color: Theme.of(context).buttonColor,
           boxShadow: [
             BoxShadow(
-              color: ColorUtils.fromHex("#181d24"),
+              color: Theme.of(context).bottomAppBarColor,
               blurRadius: 20.0,
               spreadRadius: 1.0,
               offset: Offset(
