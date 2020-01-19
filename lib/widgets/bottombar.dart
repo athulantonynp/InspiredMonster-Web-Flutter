@@ -14,7 +14,7 @@ class BottomBarState extends State<BottomBar>{
   @override
   Widget build(BuildContext context) {
     return  Container(
-      color: Colors.black,
+      color: Theme.of(context).primaryColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -22,7 +22,7 @@ class BottomBarState extends State<BottomBar>{
           Expanded(
             child: Container(
             height: 1,
-            color: ColorUtils.fromHex("#212121"),
+            color: Theme.of(context).primaryColor,
           ),
           flex: 1,
           ),
@@ -36,7 +36,7 @@ class BottomBarState extends State<BottomBar>{
                 children: <Widget>[
                   Text(
                     "© 2020 Inspired Monster",
-                    style: TextStyle(color: ColorUtils.fromHex("#757575")),
+                    style: TextStyle(color: Theme.of(context).indicatorColor),
                     textAlign: TextAlign.center,
                   )
                 ],

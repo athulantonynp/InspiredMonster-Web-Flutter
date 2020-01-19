@@ -14,6 +14,8 @@ class ThemeUtils{
     bottomAppBarColor: ColorUtils.fromHex("#181d24"),
     buttonColor: Colors.black,
     canvasColor: Colors.transparent,
+    indicatorColor: Colors.white,
+    selectedRowColor: ColorUtils.fromHex("#181818"),
     fontFamily: 'Roboto'
   );
 }
@@ -22,10 +24,12 @@ class ThemeUtils{
   return ThemeData(
     primaryColor:  ColorUtils.fromHex("#FFFFFF"),
     accentColor: ColorUtils.fromHex("#F6F6F6"),
-    backgroundColor:ColorUtils.fromHex("#CFCFCF") ,
+    backgroundColor:ColorUtils.fromHex("#FFFFFF") ,
     canvasColor: Colors.transparent,
       bottomAppBarColor: ColorUtils.fromHex("#181d24"),
     buttonColor: Colors.white,
+    indicatorColor: Colors.black,
+      selectedRowColor: ColorUtils.fromHex("#CFCFCF"),
     fontFamily: 'Roboto',
   );
 }

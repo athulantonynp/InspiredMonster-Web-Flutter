@@ -54,7 +54,7 @@ class MonsterBarState extends State<MonsterBar> {
               child: IconButton(
                 icon: Icon(
                   Icons.menu,
-                  color: Colors.white,
+                  color: Theme.of(context).indicatorColor,
                 ),
                 onPressed: () {
                   Scaffold.of(context).openEndDrawer();

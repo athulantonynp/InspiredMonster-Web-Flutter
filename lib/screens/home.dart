@@ -68,7 +68,7 @@ class HomeState extends State<Home> {
     return Container(
       color: Theme.of(context).backgroundColor,
       child: Stack(
-        children: <Widget>[getBackground(), getHomeContent(context)],
+        children: <Widget>[getBackground(context), getHomeContent(context)],
       ),
     );
   }
@@ -78,7 +78,7 @@ class HomeState extends State<Home> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        getIntroText(),
+        getIntroText(context),
         getSocialIcons(context),
         Spacer(
           flex: 2,
@@ -164,7 +164,7 @@ class HomeState extends State<Home> {
     return 460;
   }
 
-  Widget getIntroText() {
+  Widget getIntroText(BuildContext context) {
     return Container(
       width: double.infinity,
       child: Padding(
@@ -172,7 +172,7 @@ class HomeState extends State<Home> {
         child: RichText(
           textAlign: TextAlign.center,
           text: new TextSpan(
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(color: Theme.of(context).indicatorColor),
               children: <TextSpan>[
                 TextSpan(text: "I’m"),
                 TextSpan(
@@ -194,19 +194,19 @@ class HomeState extends State<Home> {
     );
   }
 
-  Widget getBackground() {
+  Widget getBackground(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Expanded(
           child: Container(
-            color: ColorUtils.fromHex("#121212"),
+            color:Theme.of(context).backgroundColor,
           ),
           flex: 7,
         ),
         Expanded(
           child: Container(
-            color: ColorUtils.fromHex("#181818"),
+            color: Theme.of(context).selectedRowColor,
           ),
           flex: 3,
         )

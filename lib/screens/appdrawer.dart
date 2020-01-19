@@ -9,7 +9,7 @@ class AppDrawer {
     return Drawer(
         
       child: Container(
-      color: Colors.black,
+      color: Theme.of(context).primaryColor,
       child: ListView(
         children: <Widget>[
            DrawerHeader(child: Container()),
@@ -17,10 +17,10 @@ class AppDrawer {
             padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
             child: FlatButton(
               shape: StadiumBorder(),
-              color: Colors.black,
-              textColor: Colors.white,
+              color: Theme.of(context).primaryColor,
+              textColor: Theme.of(context).indicatorColor,
               disabledColor: Colors.grey,
-              disabledTextColor: Colors.white,
+              disabledTextColor:Theme.of(context).indicatorColor,
               padding: EdgeInsets.all(8.0),
               splashColor: Colors.grey,
               onPressed: () {
@@ -38,10 +38,10 @@ class AppDrawer {
             padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
             child: FlatButton(
               shape: StadiumBorder(),
-              color: Colors.black,
-              textColor: Colors.white,
+              color: Theme.of(context).primaryColor,
+              textColor: Theme.of(context).indicatorColor,
               disabledColor: Colors.grey,
-              disabledTextColor: Colors.white,
+              disabledTextColor:Theme.of(context).indicatorColor,
               padding: EdgeInsets.all(8.0),
               splashColor: Colors.grey,
               onPressed: () {

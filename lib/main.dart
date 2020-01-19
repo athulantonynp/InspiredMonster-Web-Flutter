@@ -14,7 +14,7 @@ class MonsterApp extends StatelessWidget {
     return MaterialApp(
       title: 'Inspired Monster',
       debugShowCheckedModeBanner: false,
-      theme: new ThemeUtils().darkTheme,
+      theme: new ThemeUtils().lightTheme,
       darkTheme: new ThemeUtils().darkTheme,
       home: new MainFrame()
     );
