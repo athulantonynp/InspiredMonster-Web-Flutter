@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:monster/api/apimanager.dart';
 import 'package:monster/models/shot.dart';
+import 'package:monster/screens/shotdetail.dart';
 import 'package:monster/utils/ColorUtils.dart';
 import 'package:monster/utils/utils.dart';
 import 'package:monster/widgets/bottombar.dart';
@@ -49,9 +50,8 @@ class PortfolioState extends State<Portfolio> {
         future: ports,
         builder: (BuildContext context, AsyncSnapshot<List<Shot>> snapshot) {
           if (snapshot.hasData) {
-            return Padding(
-              padding: EdgeInsets.fromLTRB(8, 16, 8, 16),
-               child:GridView.builder(
+            return GridView.builder(
+              padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
               shrinkWrap: true,
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: count),
@@ -60,13 +60,12 @@ class PortfolioState extends State<Portfolio> {
                 return Column(
                   children: <Widget>[
                     Padding(
-                      child: getShotCard(snapshot.data[index]),
-                      padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                      child: getShotCard(snapshot.data[index],context),
+                      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                     )
                   ],
                 );
               },
-            )
             );
           } else {
             return Center(
@@ -82,23 +81,28 @@ class PortfolioState extends State<Portfolio> {
     );
   }
 
-  Card getShotCard(Shot shot) {
+  Card getShotCard(Shot shot,BuildContext context) {
     return Card(
       semanticContainer: true,
-      color: Colors.black,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Stack(
-        children: <Widget>[
-          Image.network(
+      child:InkWell(
+        child: Hero(
+        tag: "SHOT_ITEM",
+        child: Image.network(
             shot.images.normal,
             fit: BoxFit.fill,
           ),
-        ],
+      ),
+      onTap: (){
+           Navigator.push(context, MaterialPageRoute(builder: (_) {
+            return ShotDetail(shot: shot);
+          }));
+      },
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
-      elevation: 3,
+      elevation: 0,
     );
   }
 }
