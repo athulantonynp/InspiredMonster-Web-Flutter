@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:monster/api/apimanager.dart';
 import 'package:monster/models/shot.dart';
 import 'package:monster/screens/shotdetail.dart';
-import 'package:monster/utils/ColorUtils.dart';
-import 'package:monster/utils/utils.dart';
 import 'package:monster/widgets/bottombar.dart';
+import 'package:monster/widgets/herodialogroute.dart';
 
 class Portfolio extends StatefulWidget {
   @override
@@ -60,7 +59,7 @@ class PortfolioState extends State<Portfolio> {
                 return Column(
                   children: <Widget>[
                     Padding(
-                      child: getShotCard(snapshot.data[index],context),
+                      child: getShotCard(snapshot.data[index], context),
                       padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
                     )
                   ],
@@ -72,7 +71,9 @@ class PortfolioState extends State<Portfolio> {
               child: SizedBox(
                 width: 40,
                 height: 40,
-                child: CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white)),
+                child: CircularProgressIndicator(
+                    valueColor:
+                       new AlwaysStoppedAnimation<Color>(Colors.white)),
               ),
             );
           }
@@ -81,24 +82,49 @@ class PortfolioState extends State<Portfolio> {
     );
   }
 
-  Card getShotCard(Shot shot,BuildContext context) {
+  Widget buildDetailview(Shot shot, BuildContext context) {
+    return new Center(
+      child: new AlertDialog(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        content: new GestureDetector(
+          onTap: (){
+            Navigator.pop(context);
+          },
+          child: new Hero(
+            tag: shot.id.toString(),
+            child: new Container(
+              child: Image.network(
+                shot.images.two_x,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Card getShotCard(Shot shot, BuildContext context) {
     return Card(
       semanticContainer: true,
       color: Theme.of(context).primaryColor,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child:InkWell(
+      child: InkWell(
         child: Hero(
-        tag: shot.id.toString(),
-        child: Image.network(
+          tag: shot.id.toString(),
+          child: Image.network(
             shot.images.normal,
             fit: BoxFit.fill,
+
           ),
-      ),
-      onTap: (){
-           Navigator.push(context, MaterialPageRoute(builder: (_) {
-            return ShotDetail(shot: shot);
+        ),
+        onTap: () {
+          Navigator.push(context,
+              new HeroDialogRoute(builder: (BuildContext context) {
+            return buildDetailview(shot, context);
           }));
-      },
+        },
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),

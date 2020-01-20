@@ -18,9 +18,9 @@ class MainFrameState extends State<MainFrame>{
    @override
   Widget build(BuildContext context) {
     return new Scaffold(
-
+        
         appBar: MonsterBar(),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colors.transparent,
         endDrawer: getDrawer(context),
         body:_getDrawerItemWidget(_selectedDrawerIndex));
   }
