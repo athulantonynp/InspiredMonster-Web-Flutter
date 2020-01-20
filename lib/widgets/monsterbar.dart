@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/foundation.dart';
-import 'package:monster/utils/ColorUtils.dart';
+import 'package:monster/utils/utils.dart';
+import 'package:monster/widgets/ThemeInheritedWidget.dart';
 
 class MonsterBar extends StatefulWidget implements PreferredSizeWidget {
   MonsterBar({Key key})
@@ -51,16 +52,15 @@ class MonsterBarState extends State<MonsterBar> {
               padding: EdgeInsets.fromLTRB(24, 0, 0, 0),
             ),
             Padding(
-              child: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Theme.of(context).indicatorColor,
-                ),
-                onPressed: () {
+              child: InkWell(
+                child:Image.asset(Utils.getImageForWeb( 
+                  ThemeInheritedWidget.of(context).themeBloc.isDarkEnabled ?"ic_menu.png" : "ic_menu_light.png")),
+                onTap: () {
                   Scaffold.of(context).openEndDrawer();
-                },
-              ),
-              padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+                }
+              ) ,
+              
+              padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
             ),
             
           ],
