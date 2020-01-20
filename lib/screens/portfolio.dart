@@ -84,10 +84,11 @@ class PortfolioState extends State<Portfolio> {
   Card getShotCard(Shot shot,BuildContext context) {
     return Card(
       semanticContainer: true,
+      color: Theme.of(context).primaryColor,
       clipBehavior: Clip.antiAliasWithSaveLayer,
       child:InkWell(
         child: Hero(
-        tag: "SHOT_ITEM",
+        tag: shot.id.toString(),
         child: Image.network(
             shot.images.normal,
             fit: BoxFit.fill,

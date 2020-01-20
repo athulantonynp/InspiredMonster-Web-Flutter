@@ -22,9 +22,9 @@ class _ShotDetailState extends State<ShotDetail> {
         child: Padding(
         padding: EdgeInsets.fromLTRB(24, 16, 24, 24),
         child: Hero(
-        tag: "SHOT_ITEM",
+        tag: widget.shot.id.toString(),
         child: Image.network(
-            widget.shot.images.two_x,
+            widget.shot.images.normal,
             fit: BoxFit.none,
           ),
       ),
