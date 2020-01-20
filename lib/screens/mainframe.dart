@@ -20,7 +20,7 @@ class MainFrameState extends State<MainFrame>{
     return new Scaffold(
         
         appBar: MonsterBar(),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Theme.of(context).primaryColor,
         endDrawer: getDrawer(context),
         body:_getDrawerItemWidget(_selectedDrawerIndex));
   }

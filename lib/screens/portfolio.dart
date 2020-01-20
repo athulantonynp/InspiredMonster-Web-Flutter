@@ -1,7 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:monster/api/apimanager.dart';
 import 'package:monster/models/shot.dart';
-import 'package:monster/screens/shotdetail.dart';
 import 'package:monster/widgets/bottombar.dart';
 import 'package:monster/widgets/herodialogroute.dart';
 
@@ -83,17 +84,24 @@ class PortfolioState extends State<Portfolio> {
   }
 
   Widget buildDetailview(Shot shot, BuildContext context) {
-    return new Center(
-      child: new AlertDialog(
+    return  Container(
+      height: double.infinity,
+      width: double.infinity,
+      child: BackdropFilter(
+      filter: ImageFilter.blur(
+        sigmaY: 50,
+        sigmaX: 50
+      ),
+      child:  AlertDialog(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        content: new GestureDetector(
+        content:  GestureDetector(
           onTap: (){
             Navigator.pop(context);
           },
-          child: new Hero(
+          child:  Hero(
             tag: shot.id.toString(),
-            child: new Container(
+            child:  Container(
               child: Image.network(
                 shot.images.two_x,
                 fit: BoxFit.fill,
@@ -102,6 +110,7 @@ class PortfolioState extends State<Portfolio> {
           ),
         ),
       ),
+    ),
     );
   }
 
