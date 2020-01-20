@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:monster/utils/ColorUtils.dart';
-import 'package:monster/utils/ThemeUtils.dart';
+
 import 'package:monster/utils/utils.dart';
 import 'package:monster/widgets/bottombar.dart';
 
@@ -98,6 +97,7 @@ class HomeState extends State<Home> {
         Padding(
           padding: EdgeInsets.fromLTRB(0, 0, 36, 0),
           child: InkWell(
+            onTap: (){Utils().launchURL("https://dribbble.com/inspired_monster");},
             child: Image.asset(
               Utils.getImageForWeb("dribble.png"),
               width: 36,
@@ -108,6 +108,7 @@ class HomeState extends State<Home> {
         Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 36, 0),
             child: InkWell(
+              onTap: (){Utils().launchURL("https://twitter.com/imarun949");},
               child: Image.asset(
                 Utils.getImageForWeb("twitter.png"),
                 width: 36,
@@ -117,6 +118,7 @@ class HomeState extends State<Home> {
         Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 36, 0),
             child: InkWell(
+              onTap: (){Utils().launchURL("https://in.linkedin.com/in/arunsajeev");},
               child: Image.asset(
                 Utils.getImageForWeb("linkedin.png"),
                 width: 36,
@@ -126,6 +128,7 @@ class HomeState extends State<Home> {
         Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: InkWell(
+              onTap: (){Utils().launchURL("https://www.instagram.com/inspired_monster/");},
               child: Image.asset(
                 Utils.getImageForWeb("instagram.png"),
                 width: 36,
