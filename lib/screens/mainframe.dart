@@ -1,11 +1,48 @@
-import 'dart:js';
 import 'package:flutter/material.dart';
-import 'package:monster/screens/portfolio.dart';
 import 'package:monster/screens/home.dart';
+import 'package:monster/screens/portfolio.dart';
+import 'package:monster/widgets/monsterbar.dart';
+class MainFrame extends StatefulWidget {
+ 
 
-class AppDrawer {
-  
-  Drawer getDrawer(GlobalKey<NavigatorState> navigatorKey,BuildContext context) {
+  @override
+  State<StatefulWidget> createState() {
+    return MainFrameState();
+  }
+}
+
+class MainFrameState extends State<MainFrame>{
+   final navigatorKey = GlobalKey<NavigatorState>();
+     int _selectedDrawerIndex = 0;
+
+   @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+
+        appBar: MonsterBar(),
+        backgroundColor: Theme.of(context).primaryColor,
+        endDrawer: getDrawer(context),
+        body:_getDrawerItemWidget(_selectedDrawerIndex));
+  }
+
+  _onSelectItem(int index) {
+    setState(() => _selectedDrawerIndex = index);
+    Navigator.of(context).pop(); // close the drawer
+  }
+
+  _getDrawerItemWidget(int pos) {
+    switch (pos) {
+      case 0:
+        return new Home();
+      case 1:
+        return new Portfolio();
+
+      default:
+        return new Text("Error");
+    }
+  }
+
+    Drawer getDrawer(BuildContext context) {
     return Drawer(
         
       child: Container(
@@ -24,8 +61,9 @@ class AppDrawer {
               padding: EdgeInsets.all(8.0),
               splashColor: Colors.grey,
               onPressed: () {
-                navigatorKey.currentState.push(MaterialPageRoute(builder: (context)=> Home()));
-                print(Navigator.pop(context));
+                setState(() {
+                  _onSelectItem(0);
+                });
               },
               child: Text(
                 "Home",
@@ -45,9 +83,10 @@ class AppDrawer {
               padding: EdgeInsets.all(8.0),
               splashColor: Colors.grey,
               onPressed: () {
-                 
-               navigatorKey.currentState.push(MaterialPageRoute(builder: (context)=> Portfolio()));
-               print(Navigator.pop(context));
+                setState(() {
+                  _onSelectItem(1);
+                });
+              
               },
               child: Text(
                 "Portfolio",
@@ -60,4 +99,6 @@ class AppDrawer {
       ),
     ));
   }
+
 }
+
