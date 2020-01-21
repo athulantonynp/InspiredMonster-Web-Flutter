@@ -54,7 +54,7 @@ class MonsterBarState extends State<MonsterBar> {
             Padding(
               child: InkWell(
                 child:Image.asset(Utils.getImageForWeb( 
-                  ThemeInheritedWidget.of(context).themeBloc.isDarkEnabled ?"ic_menu.png" : "ic_menu_light.png")),
+                  ThemeInheritedWidget.of(context).themeBloc.isDarkEnabled ?"ic_menu.png" : "ic_menu_light_v2.png")),
                 onTap: () {
                   Scaffold.of(context).openEndDrawer();
                 }

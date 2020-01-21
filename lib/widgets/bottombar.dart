@@ -55,7 +55,7 @@ class BottomBarState extends State<BottomBar>{
                     child: IconButton(
                     icon:
                         Image.asset(Utils.getImageForWeb(
-                          ThemeInheritedWidget.of(context).themeBloc.isDarkEnabled ?"ic_mode_light.png" : "ic_night_mode.png"),height: 20,width: 20,),
+                          ThemeInheritedWidget.of(context).themeBloc.isDarkEnabled ?"ic_mode_light.png" : "ic_night_mode.png"),height: 30,width: 30,),
                     onPressed: () {
                       setState(() {
                       ThemeInheritedWidget.of(context).themeBloc.changeTheme;
