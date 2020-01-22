@@ -35,7 +35,7 @@ class MainFrameState extends State<MainFrame> {
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(32.0)),
               onPressed: () {
-                Utils().launchURL("https://api.whatsapp.com/send?phone=+919946701501");
+                Utils().launchURL("https://dribbble.com/inspired_monster");
               },
               icon: Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
@@ -73,6 +73,14 @@ class MainFrameState extends State<MainFrame> {
     }
   }
 
+  Color getButtonColor(int position){
+    if(_selectedDrawerIndex==position){
+      return Theme.of(context).backgroundColor;
+    }else{
+     return Theme.of(context).primaryColor;
+    }
+  }
+
   Drawer getDrawer(BuildContext context) {
     return Drawer(
         child: Container(
@@ -81,10 +89,12 @@ class MainFrameState extends State<MainFrame> {
         children: <Widget>[
           DrawerHeader(child: Container()),
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+            padding: EdgeInsets.fromLTRB(16, 8, 0, 8),
             child: FlatButton(
-              shape: StadiumBorder(),
-              color: Theme.of(context).primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(32),
+                  bottomLeft: Radius.circular(32))),
+              color: getButtonColor(0),
               textColor: Theme.of(context).indicatorColor,
               disabledColor: Colors.grey,
               disabledTextColor: Theme.of(context).indicatorColor,
@@ -102,10 +112,12 @@ class MainFrameState extends State<MainFrame> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+            padding: EdgeInsets.fromLTRB(16, 8, 0, 8),
             child: FlatButton(
-              shape: StadiumBorder(),
-              color: Theme.of(context).primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(32),
+                  bottomLeft: Radius.circular(32))),
+              color: getButtonColor(1),
               textColor: Theme.of(context).indicatorColor,
               disabledColor: Colors.grey,
               disabledTextColor: Theme.of(context).indicatorColor,
