@@ -21,14 +21,22 @@ class MainFrameState extends State<MainFrame> {
         appBar: MonsterBar(),
         backgroundColor: Theme.of(context).primaryColor,
         endDrawer: getDrawer(context),
-        floatingActionButton: Container(
+        floatingActionButton: getFab(context),
+        body: _getDrawerItemWidget(_selectedDrawerIndex));
+  }
+
+  Widget getFab(BuildContext context){
+    if(_selectedDrawerIndex==0){
+        return Container(
           padding: EdgeInsets.only(bottom: 100.0),
           child: Align(
             alignment: Alignment.bottomRight,
             child: RaisedButton.icon(
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(32.0)),
-              onPressed: () {},
+              onPressed: () {
+                Utils().launchURL("https://api.whatsapp.com/send?phone=+919946701501");
+              },
               icon: Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
                 child: Image.asset(
@@ -41,8 +49,11 @@ class MainFrameState extends State<MainFrame> {
               label: Text("Talk to me",style: TextStyle(color: Theme.of(context).indicatorColor),),
             ),
           ),
-        ),
-        body: _getDrawerItemWidget(_selectedDrawerIndex));
+        );
+    }else{
+      return Container();
+    }
+    
   }
 
   _onSelectItem(int index) {
