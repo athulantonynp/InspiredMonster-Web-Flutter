@@ -34,6 +34,9 @@ class ThemeUtils {
         canvasColor: Colors.transparent,
         indicatorColor: Colors.white,
         selectedRowColor: ColorUtils.fromHex("#181818"),
+        appBarTheme: AppBarTheme(
+          elevation: 4
+        ),
         fontFamily: 'Roboto');
   }
 
@@ -43,8 +46,11 @@ class ThemeUtils {
       accentColor: ColorUtils.fromHex("#F6F6F6"),
       backgroundColor: ColorUtils.fromHex("#FFFFFF"),
       canvasColor: Colors.transparent,
-      bottomAppBarColor: ColorUtils.fromHex("#29000000"),
+      bottomAppBarColor: ColorUtils.fromHex("#1A000000"),
       buttonColor: Colors.white,
+      appBarTheme: AppBarTheme(
+          elevation: 4
+        ),
       indicatorColor: Colors.black,
       selectedRowColor: ColorUtils.fromHex("#CFCFCF"),
       fontFamily: 'Roboto',

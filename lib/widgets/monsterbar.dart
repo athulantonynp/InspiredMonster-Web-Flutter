@@ -28,17 +28,18 @@ class MonsterBarState extends State<MonsterBar> {
   @override
   Widget build(BuildContext context) {
     return new Container(
+      
         height: 60.0,
         decoration: new BoxDecoration(
           color: Theme.of(context).buttonColor,
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).bottomAppBarColor,
-              blurRadius: 20.0,
-              spreadRadius: 1.0,
+              blurRadius: 10.0,
+              spreadRadius: 0.5,
               offset: Offset(
-                1.0,
-                1.0,
+                0,
+                0.5,
               ),
             )
           ],
