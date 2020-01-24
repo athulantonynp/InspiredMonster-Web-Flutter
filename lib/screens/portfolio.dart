@@ -51,20 +51,18 @@ class PortfolioState extends State<Portfolio> {
         builder: (BuildContext context, AsyncSnapshot<List<Shot>> snapshot) {
           if (snapshot.hasData) {
             return GridView.builder(
-              padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
+              
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 4),
               shrinkWrap: true,
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: 4/3,
                   crossAxisCount: count),
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
-                return Column(
-                  children: <Widget>[
-                    Padding(
+                return Padding(
                       child: getShotCard(snapshot.data[index], context),
-                      padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
-                    )
-                  ],
-                );
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                    );
               },
             );
           } else {
@@ -114,12 +112,12 @@ class PortfolioState extends State<Portfolio> {
     );
   }
 
-  Card getShotCard(Shot shot, BuildContext context) {
-    return Card(
-      semanticContainer: true,
-      color: Theme.of(context).primaryColor,
+  Widget getShotCard(Shot shot, BuildContext context) {
+
+    return  ClipRRect(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: InkWell(
+     borderRadius: BorderRadius.circular(16.0),
+     child: InkWell(
         child: Hero(
           tag: shot.id.toString(),
           child: Image.network(
@@ -135,10 +133,7 @@ class PortfolioState extends State<Portfolio> {
           }));
         },
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16.0),
-      ),
-      elevation: 0,
-    );
+ );
+    
   }
 }
