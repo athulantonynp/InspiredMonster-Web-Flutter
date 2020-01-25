@@ -133,6 +133,30 @@ class MainFrameState extends State<MainFrame> {
                 style: TextStyle(fontSize: 14),
               ),
             ),
+          ),
+
+             Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 0, 8),
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(32),
+                  bottomLeft: Radius.circular(32))),
+              color: getButtonColor(2),
+              textColor: Theme.of(context).indicatorColor,
+              disabledColor: Colors.grey,
+              disabledTextColor: Theme.of(context).indicatorColor,
+              padding: EdgeInsets.all(8.0),
+              splashColor: Colors.grey,
+              onPressed: () {
+                setState(() {
+                  _onSelectItem(0);
+                });
+              },
+              child: Text(
+                "About Me",
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
           )
         ],
       ),

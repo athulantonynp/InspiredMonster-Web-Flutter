@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:monster/api/apimanager.dart';
 import 'package:monster/models/shot.dart';
+import 'package:monster/screens/shotdetail.dart';
 import 'package:monster/widgets/bottombar.dart';
 import 'package:monster/widgets/herodialogroute.dart';
 
@@ -91,21 +92,12 @@ class PortfolioState extends State<Portfolio> {
         sigmaX: 50
       ),
       child:  AlertDialog(
+        scrollable: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        content:  GestureDetector(
-          onTap: (){
-            Navigator.pop(context);
-          },
-          child:  Hero(
-            tag: shot.id.toString(),
-            child:  Container(
-              child: Image.network(
-                shot.images.two_x,
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
+        content:  Padding(
+          padding: EdgeInsets.all(24),
+          child: getShotDetailWidget(shot, context),
         ),
       ),
     ),

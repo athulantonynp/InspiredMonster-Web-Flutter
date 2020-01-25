@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:monster/models/shotimage.dart';
 
 
@@ -9,9 +7,10 @@ class Shot{
   final ShotImage images;
   final int id;
   bool isSelected=false;
+  final String description;
   
   
-  Shot({this.title,this.published_at,this.images,this.id});
+  Shot({this.title,this.published_at,this.images,this.id,this.description});
 
   factory Shot.fromJson(Map<String, dynamic> jsonResponse){
 
@@ -19,7 +18,7 @@ class Shot{
     var list=ShotImage.fromJson(imageList);
 
     var shot=Shot(title: jsonResponse['title'],published_at: DateTime.parse(jsonResponse['published_at']),images: list,
-    id: jsonResponse['id']);
+    id: jsonResponse['id'],description: jsonResponse['description']);
     return shot ;
   }
 
@@ -28,6 +27,7 @@ class Shot{
       "title": this.title,
       "published_at": this.published_at.toIso8601String(),
       "id": this.id,
+      "description":this.description,
       "images": this.images.toJson()
     };
   }
