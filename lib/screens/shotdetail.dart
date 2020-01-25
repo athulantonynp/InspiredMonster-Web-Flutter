@@ -5,26 +5,26 @@ import 'package:monster/models/shot.dart';
 
 Widget getShotDetailWidget(Shot shot,BuildContext context){
   var width=getShotImageWidthForPreview(context);
-  return SingleChildScrollView(
-    child: Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    mainAxisAlignment: MainAxisAlignment.start,
+  print(width);
+  // var padding=getPadding(context);
+  return ListView(
+    shrinkWrap: true,
+    padding: EdgeInsets.all(24),
     children: <Widget>[
-       Container(
-         width: width,
-         height: (width*3)/4,
-         child: Hero(
+      Container(
+            width: width,
+              height: (width*3)/4,
+            child: Hero(
             tag: shot.id.toString(),
             child:  
             Image.network(
                 shot.images.two_x,
-                fit: BoxFit.fill,
-                alignment: Alignment.topLeft,
+                fit: BoxFit.fill
                 
             ),
           ),
-       ),
-        Align(
+          ),
+          Align(
           alignment: Alignment.topLeft,
           child: Padding(
           padding: EdgeInsets.fromLTRB(0, 24, 0, 8),
@@ -43,7 +43,6 @@ Widget getShotDetailWidget(Shot shot,BuildContext context){
         ),),
         )
     ],
-  ),
   );
 }
 
@@ -56,6 +55,11 @@ String removeAllHtmlTags(String htmlText) {
     );
 
     return htmlText.replaceAll(exp, '');
+}
+
+double getPadding(BuildContext context){
+  var maxWidth=MediaQuery.of(context).size.width;
+
 }
 
 double getShotImageWidthForPreview(BuildContext context){

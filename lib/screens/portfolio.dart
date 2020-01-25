@@ -52,18 +52,16 @@ class PortfolioState extends State<Portfolio> {
         builder: (BuildContext context, AsyncSnapshot<List<Shot>> snapshot) {
           if (snapshot.hasData) {
             return GridView.builder(
-              
               padding: EdgeInsets.fromLTRB(8, 8, 8, 4),
               shrinkWrap: true,
               gridDelegate: new SliverGridDelegateWithFixedCrossAxisCount(
-                childAspectRatio: 4/3,
-                  crossAxisCount: count),
+                  childAspectRatio: 4 / 3, crossAxisCount: count),
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return Padding(
-                      child: getShotCard(snapshot.data[index], context),
-                      padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
-                    );
+                  child: getShotCard(snapshot.data[index], context),
+                  padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
+                );
               },
             );
           } else {
@@ -73,7 +71,7 @@ class PortfolioState extends State<Portfolio> {
                 height: 40,
                 child: CircularProgressIndicator(
                     valueColor:
-                       new AlwaysStoppedAnimation<Color>(Colors.white)),
+                        new AlwaysStoppedAnimation<Color>(Colors.white)),
               ),
             );
           }
@@ -83,49 +81,37 @@ class PortfolioState extends State<Portfolio> {
   }
 
   Widget buildDetailview(Shot shot, BuildContext context) {
-    return  Container(
-      height: double.infinity,
-      width: double.infinity,
-      child: BackdropFilter(
-      filter: ImageFilter.blur(
-        sigmaY: 50,
-        sigmaX: 50
-      ),
-      child:  AlertDialog(
-        scrollable: true,
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        content:  Padding(
-          padding: EdgeInsets.all(24),
-          child: getShotDetailWidget(shot, context),
-        ),
-      ),
-    ),
+    return Container(
+      child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          child: getShotDetailWidget(shot, context)),
     );
   }
 
   Widget getShotCard(Shot shot, BuildContext context) {
-
-    return  ClipRRect(
+    return ClipRRect(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-     borderRadius: BorderRadius.circular(16.0),
-     child: InkWell(
+      borderRadius: BorderRadius.circular(16.0),
+      child: InkWell(
         child: Hero(
           tag: shot.id.toString(),
           child: Image.network(
             shot.images.normal,
             fit: BoxFit.fill,
-
           ),
         ),
         onTap: () {
-          Navigator.push(context,
-              new HeroDialogRoute(builder: (BuildContext context) {
-            return buildDetailview(shot, context);
-          },colorBarrier: Theme.of(context).unselectedWidgetColor));
+          Navigator.push(
+              context,
+              new HeroDialogRoute(
+                  builder: (context) {
+                    return buildDetailview(shot, context);
+                  },
+                  colorBarrier: Theme.of(context).unselectedWidgetColor));
         },
       ),
- );
-    
+    );
   }
 }
