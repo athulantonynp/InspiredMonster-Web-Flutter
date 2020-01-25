@@ -4,14 +4,15 @@ import 'package:monster/models/shot.dart';
 
 
 Widget getShotDetailWidget(Shot shot,BuildContext context){
+  var width=getShotImageWidthForPreview(context);
   return SingleChildScrollView(
     child: Column(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
        SizedBox(
-         width: MediaQuery.of(context).size.width,
-         height: MediaQuery.of(context).size.width*0.3,
+         width: width,
+         height: (width*3)/4,
          child: Hero(
             tag: shot.id.toString(),
             child:  
@@ -53,4 +54,25 @@ String removeAllHtmlTags(String htmlText) {
     );
 
     return htmlText.replaceAll(exp, '');
+}
+
+double getShotImageWidthForPreview(BuildContext context){
+  var maxwidth=MediaQuery.of(context).size.width;
+  if(maxwidth>800){
+    return 800;
   }
+
+  if(maxwidth<=800 && maxwidth>400){
+      return 400;
+  }
+
+    if(maxwidth<=400 && maxwidth>200){
+      return 200;
+  }
+
+     if(maxwidth<=200 && maxwidth>100){
+      return 100;
+  }
+
+  return 50;
+}
