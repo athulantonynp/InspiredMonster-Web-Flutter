@@ -34,6 +34,7 @@ class ThemeUtils {
         canvasColor: Colors.transparent,
         indicatorColor: Colors.white,
         selectedRowColor: ColorUtils.fromHex("#181818"),
+        unselectedWidgetColor: Colors.black87,
         appBarTheme: AppBarTheme(
           elevation: 4
         ),
@@ -53,6 +54,7 @@ class ThemeUtils {
         ),
       indicatorColor: Colors.black,
       selectedRowColor: ColorUtils.fromHex("#CFCFCF"),
+        unselectedWidgetColor: Colors.white70,
       fontFamily: 'Roboto',
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class HeroDialogRoute<T> extends PageRoute<T> {
-  HeroDialogRoute({ this.builder }) : super();
+  final Color colorBarrier;
+
+  HeroDialogRoute({ this.builder,this.colorBarrier }) : super();
 
   final WidgetBuilder builder;
 
@@ -18,7 +20,7 @@ class HeroDialogRoute<T> extends PageRoute<T> {
   bool get maintainState => true;
 
   @override
-  Color get barrierColor => Colors.black54;
+  Color get barrierColor => colorBarrier;
 
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {

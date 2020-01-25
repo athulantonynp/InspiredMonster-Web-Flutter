@@ -122,7 +122,7 @@ class PortfolioState extends State<Portfolio> {
           Navigator.push(context,
               new HeroDialogRoute(builder: (BuildContext context) {
             return buildDetailview(shot, context);
-          }));
+          },colorBarrier: Theme.of(context).unselectedWidgetColor));
         },
       ),
  );
