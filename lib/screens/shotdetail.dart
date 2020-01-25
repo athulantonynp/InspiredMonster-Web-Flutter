@@ -10,7 +10,7 @@ Widget getShotDetailWidget(Shot shot,BuildContext context){
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.start,
     children: <Widget>[
-       SizedBox(
+       Container(
          width: width,
          height: (width*3)/4,
          child: Hero(
@@ -18,7 +18,9 @@ Widget getShotDetailWidget(Shot shot,BuildContext context){
             child:  
             Image.network(
                 shot.images.two_x,
-                fit: BoxFit.fill
+                fit: BoxFit.fill,
+                alignment: Alignment.topLeft,
+                
             ),
           ),
        ),
