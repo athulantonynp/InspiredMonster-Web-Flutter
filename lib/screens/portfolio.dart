@@ -25,7 +25,7 @@ class PortfolioState extends State<Portfolio> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: getBodyContent(context),
+            child: getBodyContent(),
             flex: 13,
           ),
           Expanded(
@@ -37,7 +37,7 @@ class PortfolioState extends State<Portfolio> {
     );
   }
 
-  Widget getBodyContent(BuildContext context) {
+  Widget getBodyContent() {
     int count;
 
     if (MediaQuery.of(context).orientation == Orientation.landscape)
@@ -59,7 +59,7 @@ class PortfolioState extends State<Portfolio> {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  child: getShotCard(snapshot.data[index], context),
+                  child: getShotCard(snapshot.data[index]),
                   padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
                 );
               },
@@ -80,38 +80,21 @@ class PortfolioState extends State<Portfolio> {
     );
   }
 
-  Widget buildDetailview(Shot shot, BuildContext context) {
-    return Container(
-      child: GestureDetector(
-          onTap: () {
-            Navigator.of(context).pop();
-          },
-          child: getShotDetailWidget(shot, context)),
-    );
-  }
-
-  Widget getShotCard(Shot shot, BuildContext context) {
-    return ClipRRect(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      borderRadius: BorderRadius.circular(16.0),
-      child: InkWell(
-        child: Hero(
-          tag: shot.id.toString(),
-          child: Image.network(
+  Widget getShotCard(Shot shot) {
+    return  InkWell(
+        child: Image.network(
             shot.images.normal,
             fit: BoxFit.fill,
           ),
-        ),
         onTap: () {
           Navigator.push(
               context,
               new HeroDialogRoute(
                   builder: (context) {
-                    return buildDetailview(shot, context);
+                    return ShotDetail(shot: shot);
                   },
                   colorBarrier: Theme.of(context).unselectedWidgetColor));
-        },
-      ),
+        }
     );
   }
 }
