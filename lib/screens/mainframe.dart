@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:monster/screens/aboutme.dart';
 import 'package:monster/screens/home.dart';
 import 'package:monster/screens/portfolio.dart';
 import 'package:monster/utils/utils.dart';
@@ -35,7 +36,7 @@ class MainFrameState extends State<MainFrame> {
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(32.0)),
               onPressed: () {
-                Utils().launchURL("https://dribbble.com/inspired_monster");
+                Utils().launchURL("https://api.whatsapp.com/send?phone=+919946701501");
               },
               icon: Padding(
                 padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
@@ -68,8 +69,8 @@ class MainFrameState extends State<MainFrame> {
       case 1:
         return new Portfolio();
 
-      default:
-        return new Text("Error");
+      case 2:
+        return new AboutMe();
     }
   }
 
@@ -98,7 +99,7 @@ class MainFrameState extends State<MainFrame> {
               textColor: Theme.of(context).indicatorColor,
               disabledColor: Colors.grey,
               disabledTextColor: Theme.of(context).indicatorColor,
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(12.0),
               splashColor: Colors.grey,
               onPressed: () {
                 setState(() {
@@ -121,7 +122,7 @@ class MainFrameState extends State<MainFrame> {
               textColor: Theme.of(context).indicatorColor,
               disabledColor: Colors.grey,
               disabledTextColor: Theme.of(context).indicatorColor,
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(12.0),
               splashColor: Colors.grey,
               onPressed: () {
                 setState(() {
@@ -145,11 +146,11 @@ class MainFrameState extends State<MainFrame> {
               textColor: Theme.of(context).indicatorColor,
               disabledColor: Colors.grey,
               disabledTextColor: Theme.of(context).indicatorColor,
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(12.0),
               splashColor: Colors.grey,
               onPressed: () {
                 setState(() {
-                  _onSelectItem(0);
+                  _onSelectItem(2);
                 });
               },
               child: Text(
