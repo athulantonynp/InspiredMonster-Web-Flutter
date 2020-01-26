@@ -86,7 +86,10 @@ class MainFrameState extends State<MainFrame> {
     return Drawer(
         child: Container(
       color: Theme.of(context).primaryColor,
-      child: ListView(
+      child:Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView(
         children: <Widget>[
           DrawerHeader(child: Container()),
           Padding(
@@ -130,7 +133,7 @@ class MainFrameState extends State<MainFrame> {
                 });
               },
               child: Text(
-                "Portfolio",
+                "Works",
                 style: TextStyle(fontSize: 14),
               ),
             ),
@@ -158,9 +161,44 @@ class MainFrameState extends State<MainFrame> {
                 style: TextStyle(fontSize: 14),
               ),
             ),
-          )
+             ),
+
+             Padding(
+            padding: EdgeInsets.fromLTRB(16, 8, 0, 8),
+            child: FlatButton(
+              shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(32),
+                  bottomLeft: Radius.circular(32))),
+              color: getButtonColor(3),
+              textColor: Theme.of(context).indicatorColor,
+              disabledColor: Colors.grey,
+              disabledTextColor: Theme.of(context).indicatorColor,
+              padding: EdgeInsets.all(12.0),
+              splashColor: Colors.grey,
+              onPressed: () {
+                setState(() {
+                  _onSelectItem(3);
+                });
+              },
+              child: Text(
+                "Contact",
+                style: TextStyle(fontSize: 14),
+              ),
+            ),
+          ),
         ],
       ),
+          ),
+           Padding(
+             padding: EdgeInsets.all(24),
+             child: Text(
+              "Everything on this website has been made with a lot of love and hard work. If you copy anything I will hunt you down. I mean it. ",
+              style: TextStyle(color: Theme.of(context).indicatorColor,
+              fontSize: 10),
+            ),
+           )
+        ],
+      ) ,
     ));
   }
 }

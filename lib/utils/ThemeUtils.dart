@@ -45,7 +45,7 @@ class ThemeUtils {
     return ThemeData(
       primaryColor: ColorUtils.fromHex("#FFFFFF"),
       accentColor: ColorUtils.fromHex("#F6F6F6"),
-      backgroundColor: ColorUtils.fromHex("#FFFFFF"),
+      backgroundColor: ColorUtils.fromHex("#F6F6F6"),
       canvasColor: Colors.transparent,
       bottomAppBarColor: ColorUtils.fromHex("#1A000000"),
       buttonColor: Colors.white,
