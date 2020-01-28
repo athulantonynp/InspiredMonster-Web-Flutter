@@ -82,10 +82,13 @@ class PortfolioState extends State<Portfolio> {
 
   Widget getShotCard(Shot shot) {
     return  InkWell(
-        child: Image.network(
+        child: Hero(
+          tag: shot.id.toString(),
+          child: Image.network(
             shot.images.normal,
             fit: BoxFit.fill,
           ),
+        ),
         onTap: () {
           Navigator.push(
               context,
