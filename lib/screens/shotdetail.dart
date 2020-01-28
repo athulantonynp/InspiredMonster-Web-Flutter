@@ -11,18 +11,19 @@ class ShotDetail extends StatefulWidget {
 
 class _ShotDetailState extends State<ShotDetail> {
 
-  String followText='Follow me on Uplabs  | Twitter  | Facebook  | Instagram';
   @override
   Widget build(BuildContext context) {
     var imageWidth = getShotImageWidthForPreview(context);
     return Scaffold(
-      body: Container(
+      body: Center(
       child: GestureDetector(
         onTap: () {
           Navigator.of(context).pop();
         },
-        child: ListView(
-          shrinkWrap: false,
+        child: Container(
+          width: imageWidth,
+          child: ListView(
+          shrinkWrap: true,
           padding: EdgeInsets.all(24),
           children: <Widget>[
             Align(
@@ -37,13 +38,13 @@ class _ShotDetailState extends State<ShotDetail> {
             ),
             ),
             Align(
-              alignment: Alignment.center,
+              alignment: Alignment.centerLeft,
               child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Align(
-              alignment: Alignment.center,
+              alignment: Alignment.centerLeft,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(0, 24, 0, 8),
                 child: Text(
@@ -57,7 +58,7 @@ class _ShotDetailState extends State<ShotDetail> {
               ),
             ),
             Align(
-              alignment: Alignment.center,
+              alignment: Alignment.centerLeft,
               child: Text(
                 removeAllHtmlTags(widget.shot.description),
                 style: TextStyle(
@@ -69,24 +70,16 @@ class _ShotDetailState extends State<ShotDetail> {
             )
           ],
         ),
+        ),
       ),
     ),
     );
   }
 
   String removeAllHtmlTags(String htmlText) {
-    String followLine="Follow";
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
     var freeHtml=htmlText.replaceAll(exp, '');
-    // var followIndex=htmlText.indexOf(followLine);
-
-    // freeHtml=freeHtml.substring(0,followIndex);
-
     return freeHtml;
-  }
-
-  double getPadding(BuildContext context) {
-    var maxWidth = MediaQuery.of(context).size.width;
   }
 
   double getShotImageWidthForPreview(BuildContext context) {
@@ -103,7 +96,11 @@ class _ShotDetailState extends State<ShotDetail> {
       return 200;
     }
 
-    if (maxwidth <= 200 && maxwidth > 100) {
+    if (maxwidth <= 200 && maxwidth > 150) {
+      return 150;
+    }
+
+    if (maxwidth <= 150 && maxwidth > 100) {
       return 100;
     }
 
