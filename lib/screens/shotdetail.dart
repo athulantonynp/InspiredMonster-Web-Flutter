@@ -14,11 +14,7 @@ class _ShotDetailState extends State<ShotDetail> {
   Widget build(BuildContext context) {
     var imageWidth = getShotImageWidthForPreview(context);
     return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          Navigator.of(context).pop();
-        },
-        child: Center(
+      body: Center(
           child: Container(
             width: imageWidth,
             child: ListView(
@@ -71,7 +67,6 @@ class _ShotDetailState extends State<ShotDetail> {
               ],
             ),
           ),
-        ),
       ),
     );
   }
@@ -92,10 +87,18 @@ class _ShotDetailState extends State<ShotDetail> {
       return 400;
     }
 
-    if (maxwidth <= 400 && maxwidth > 200) {
+    if (maxwidth <= 400 && maxwidth > 350) {
+      return 350;
+    }
+    if (maxwidth <= 350 && maxwidth > 300) {
+      return 300;
+    }
+    if (maxwidth <= 300 && maxwidth > 250) {
+      return 250;
+    }
+    if (maxwidth <= 250 && maxwidth > 200) {
       return 200;
     }
-
     if (maxwidth <= 200 && maxwidth > 150) {
       return 150;
     }

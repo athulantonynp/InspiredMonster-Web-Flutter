@@ -94,7 +94,14 @@ class PortfolioState extends State<Portfolio> {
               context,
               new HeroDialogRoute(
                   builder: (context) {
-                    return ShotDetail(shot: shot);
+                    return Container(
+                      child: GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).pop();
+                        },
+                        child: ShotDetail(shot: shot),
+                      ),
+                    );
                   },
                   colorBarrier: Theme.of(context).unselectedWidgetColor));
         }
