@@ -48,16 +48,14 @@ class AboutMeState extends State<AboutMe> {
           height: size,
         ),
         Padding(
-            padding: EdgeInsets.all(24),
+            padding: EdgeInsets.all(64),
             child: Text(
-              "I enjoy taking complex problems and turning them into simple and" +
-                  "beautiful interface designs. I know all the good design words and acronyms such as MVP, Design system" +
-                  "Responsive design etc. When I’m not pushing pixels",
+              Utils.ABOUT_ME_TEXT,
               style: TextStyle(
                 color: Theme.of(context).indicatorColor,
-                fontSize: 14,
+                fontSize: 16,
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.justify,
             )),
         Expanded(
           flex: 1,
@@ -68,21 +66,23 @@ class AboutMeState extends State<AboutMe> {
               Padding(
                 padding: EdgeInsets.fromLTRB(24, 8, 24, 24),
                 child: RaisedButton(
-              color: Theme.of(context).buttonColor,
-              shape:  RoundedRectangleBorder(
-        borderRadius: new BorderRadius.circular(40.0)
-),
-            onPressed: (){
-              Utils().launchURL("https://drive.google.com/file/d/1zVnBR-cMfm2J4qQM62iRChynHD43kPu8/view?usp=sharing");
-            },
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(64,14, 64, 14),
-              child: Text('Download Resume', style: TextStyle(fontSize: 20,
-            color: Theme.of(context).indicatorColor)),
-            ),
-          ),
+                  color: Theme.of(context).indicatorColor,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: new BorderRadius.circular(40.0)),
+                  onPressed: () {
+                    Utils().launchURL(
+                        "https://drive.google.com/file/d/1zVnBR-cMfm2J4qQM62iRChynHD43kPu8/view?usp=sharing");
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(64, 14, 64, 14),
+                    child: Text('Download Resume',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Theme.of(context).primaryColor)),
+                  ),
+                ),
               )
-          ],
+            ],
           ),
         )
       ],
