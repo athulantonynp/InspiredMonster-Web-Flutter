@@ -50,7 +50,7 @@ class MonsterBarState extends State<MonsterBar> {
 
             Padding(
               child: Image.asset(getTitleIcon()),
-              padding: EdgeInsets.fromLTRB(24, 0, 0, 0),
+              padding: EdgeInsets.fromLTRB(24, 8, 24, 8),
             ),
             Padding(
               child: InkWell(
