@@ -18,7 +18,7 @@ class AboutMeState extends State<AboutMe> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: getMainContent(),
+            child: getMainContent(context),
             flex: 13,
           ),
           Expanded(
@@ -30,24 +30,39 @@ class AboutMeState extends State<AboutMe> {
     );
   }
 
-  Widget getMainContent() {
+  Widget getMainContent(BuildContext context) {
     var size = getImageSize();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-            padding: EdgeInsets.all(24),
-            child: Text("About Me",
-                style: TextStyle(
-                    color: Theme.of(context).indicatorColor, fontSize: 20))),
-        Image.asset(
-          Utils.getImageForWeb("ic_dp.png"),
-          fit: BoxFit.fill,
-          width: size,
-          height: size,
-        ),
-        Padding(
+    return  ListView.builder(
+      shrinkWrap:true,
+          itemCount: 4,
+          itemBuilder: (context, index) {
+            if(index==0){
+              return getTitle();
+            }
+            if(index==1){
+              return getPortfolioIcon(size);
+            }
+            if(index==2){
+              return getAboutMeText();
+            }
+
+            if(index==3){
+             return getResumeButton();
+            }
+            return Container();
+          },
+        );
+  }
+
+  double getImageSize() {
+    if (MediaQuery.of(context).orientation == Orientation.landscape)
+      return 160;
+    else
+      return 80;
+  }
+
+  Widget getAboutMeText(){
+   return Padding(
             padding: EdgeInsets.all(64),
             child: Text(
               Utils.ABOUT_ME_TEXT,
@@ -56,15 +71,31 @@ class AboutMeState extends State<AboutMe> {
                 fontSize: 16,
               ),
               textAlign: TextAlign.justify,
-            )),
-        Expanded(
-          flex: 1,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.fromLTRB(24, 8, 24, 24),
+            ));
+  }
+  Widget getPortfolioIcon(double size){
+    return  Image.asset(
+          Utils.getImageForWeb("ic_dp.png"),
+          fit: BoxFit.contain,
+          width: size,
+          height: size,
+        );
+  }
+
+  Widget getTitle(){
+    return  Padding(
+            padding: EdgeInsets.all(24),
+            child: Text("About Me",
+                style: TextStyle(
+                    color: Theme.of(context).indicatorColor, fontSize: 20),textAlign: TextAlign.center,));
+  }
+
+  Widget getResumeButton(){
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+      child: Padding(
+                padding: EdgeInsets.fromLTRB(24, 36, 24, 24),
                 child: RaisedButton(
                   color: Theme.of(context).indicatorColor,
                   shape: RoundedRectangleBorder(
@@ -81,18 +112,8 @@ class AboutMeState extends State<AboutMe> {
                             color: Theme.of(context).primaryColor)),
                   ),
                 ),
-              )
-            ],
-          ),
-        )
-      ],
+              ),
+    ),
     );
-  }
-
-  double getImageSize() {
-    if (MediaQuery.of(context).orientation == Orientation.landscape)
-      return 160;
-    else
-      return 80;
   }
 }
