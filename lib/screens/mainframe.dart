@@ -68,7 +68,6 @@ class MainFrameState extends State<MainFrame> {
         return new Home();
       case 1:
         return new Portfolio();
-
       case 2:
         return new AboutMe();
     }
@@ -161,31 +160,7 @@ class MainFrameState extends State<MainFrame> {
                 style: TextStyle(fontSize: 14),
               ),
             ),
-             ),
-
-             Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 0, 8),
-            child: FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.only(topLeft: Radius.circular(32),
-                  bottomLeft: Radius.circular(32))),
-              color: getButtonColor(3),
-              textColor: Theme.of(context).indicatorColor,
-              disabledColor: Colors.grey,
-              disabledTextColor: Theme.of(context).indicatorColor,
-              padding: EdgeInsets.all(12.0),
-              splashColor: Colors.grey,
-              onPressed: () {
-                setState(() {
-                  _onSelectItem(3);
-                });
-              },
-              child: Text(
-                "Contact",
-                style: TextStyle(fontSize: 14),
-              ),
-            ),
-          ),
+             )
         ],
       ),
           ),
