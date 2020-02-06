@@ -70,7 +70,7 @@ class AboutMeState extends State<AboutMe> {
                 color: Theme.of(context).indicatorColor,
                 fontSize: 16,
               ),
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.left,
             ));
   }
   Widget getPortfolioIcon(double size){

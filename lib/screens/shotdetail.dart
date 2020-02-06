@@ -26,9 +26,16 @@ class _ShotDetailState extends State<ShotDetail> {
                   child: Container(
                     width: imageWidth,
                     height: (imageWidth * 3) / 4,
-                    child: Image.network(
-                      widget.shot.images.two_x,
-                      fit: BoxFit.fill,
+                    child:Stack(
+                      children: <Widget>[
+                        Center(child: CircularProgressIndicator(
+                            valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
+                        )),
+                        Image.network(
+                          widget.shot.images.two_x,
+                          fit: BoxFit.fill,
+                        )
+                      ],
                     ),
                   ),
                 ),
