@@ -66,7 +66,7 @@ class AboutMeState extends State<AboutMe> {
   }
 
   Widget getHeadText(double size){
-    return Padding(padding: EdgeInsets.fromLTRB(64, 32, 64, 12)
+    return Padding(padding: EdgeInsets.fromLTRB(64, 32, 12, 12)
     ,
     child:  Row(
       mainAxisAlignment: isMobile()? MainAxisAlignment.start : MainAxisAlignment.center,
