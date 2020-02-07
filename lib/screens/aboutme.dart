@@ -30,23 +30,27 @@ class AboutMeState extends State<AboutMe> {
     );
   }
 
+  bool isMobile(){
+    if (MediaQuery.of(context).orientation == Orientation.landscape)
+      return false;
+    else
+      return true;
+  }
+
   Widget getMainContent(BuildContext context) {
     var size = getImageSize();
     return  ListView.builder(
       shrinkWrap:true,
-          itemCount: 4,
+          itemCount: 3,
           itemBuilder: (context, index) {
             if(index==0){
-              return getTitle();
+              return getHeadText(size);
             }
             if(index==1){
-              return getPortfolioIcon(size);
-            }
-            if(index==2){
               return getAboutMeText();
             }
 
-            if(index==3){
+            if(index==2){
              return getResumeButton();
             }
             return Container();
@@ -58,12 +62,31 @@ class AboutMeState extends State<AboutMe> {
     if (MediaQuery.of(context).orientation == Orientation.landscape)
       return 160;
     else
-      return 80;
+      return 100;
+  }
+
+  Widget getHeadText(double size){
+    return Padding(padding: EdgeInsets.fromLTRB(64, 32, 64, 12)
+    ,
+    child:  Row(
+      mainAxisAlignment: isMobile()? MainAxisAlignment.start : MainAxisAlignment.center,
+      children: <Widget>[
+        getPortfolioIcon(size),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            getTitle(),
+            getSocialIcons()
+          ],
+        )
+      ],
+    ),);
   }
 
   Widget getAboutMeText(){
    return Padding(
-            padding: EdgeInsets.all(64),
+            padding: EdgeInsets.fromLTRB(64, 32, 64, 64),
             child: Text(
               Utils.ABOUT_ME_TEXT,
               style: TextStyle(
@@ -84,10 +107,60 @@ class AboutMeState extends State<AboutMe> {
 
   Widget getTitle(){
     return  Padding(
-            padding: EdgeInsets.all(24),
-            child: Text("About Me",
+            padding: EdgeInsets.fromLTRB(24, 0, 24, 12),
+            child: Text("Arun Sajeev",
                 style: TextStyle(
-                    color: Theme.of(context).indicatorColor, fontSize: 20),textAlign: TextAlign.center,));
+                    color: Theme.of(context).indicatorColor, fontSize: 24),textAlign: TextAlign.center,));
+  }
+
+
+  Widget getSocialIcons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.fromLTRB(24, 0, 12, 0),
+          child: InkWell(
+            onTap: (){Utils().launchURL("https://dribbble.com/inspired_monster");},
+            child: Image.asset(
+              Utils.getImageForWeb("dribble.png"),
+              width: 36,
+              height: 36,
+            ),
+          ),
+        ),
+        Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
+            child: InkWell(
+              onTap: (){Utils().launchURL("https://twitter.com/imarun949");},
+              child: Image.asset(
+                Utils.getImageForWeb("twitter.png"),
+                width: 36,
+                height: 36,
+              ),
+            )),
+        Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 12, 0),
+            child: InkWell(
+              onTap: (){Utils().launchURL("https://in.linkedin.com/in/arunsajeev");},
+              child: Image.asset(
+                Utils.getImageForWeb("linkedin.png"),
+                width: 36,
+                height: 36,
+              ),
+            )),
+        Padding(
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            child: InkWell(
+              onTap: (){Utils().launchURL("https://www.instagram.com/inspired_monster/");},
+              child: Image.asset(
+                Utils.getImageForWeb("instagram.png"),
+                width: 36,
+                height: 36,
+              ),
+            )),
+      ],
+    );
   }
 
   Widget getResumeButton(){
