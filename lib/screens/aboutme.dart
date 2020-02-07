@@ -93,7 +93,7 @@ class AboutMeState extends State<AboutMe> {
                 color: Theme.of(context).indicatorColor,
                 fontSize: 16,
               ),
-              textAlign: TextAlign.left,
+              textAlign: isMobile()? TextAlign.left : TextAlign.center,
             ));
   }
   Widget getPortfolioIcon(double size){
@@ -110,7 +110,8 @@ class AboutMeState extends State<AboutMe> {
             padding: EdgeInsets.fromLTRB(24, 0, 24, 12),
             child: Text("Arun Sajeev",
                 style: TextStyle(
-                    color: Theme.of(context).indicatorColor, fontSize: 24),textAlign: TextAlign.center,));
+                    color: Theme.of(context).indicatorColor, fontSize: 24,fontWeight: FontWeight.bold),textAlign: TextAlign.center,
+            ));
   }
 
 
