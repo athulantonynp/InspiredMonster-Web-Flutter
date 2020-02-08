@@ -17,32 +17,35 @@ class _ShotDetailState extends State<ShotDetail> {
   Widget build(BuildContext context) {
     var imageWidth = getShotImageWidthForPreview(context);
     return Container(
+      color: Colors.green,
         child: buildCarousel(),
     );
   }
 
   Widget buildCarousel(){
     return CarouselSlider.builder(
+
       itemCount: widget.shots.length,
       enableInfiniteScroll: true,
-      enlargeCenterPage: true,
-
+      enlargeCenterPage: false,
       scrollDirection: Axis.horizontal,
       itemBuilder: (BuildContext context, int itemIndex) =>
 
-          Center(
-            child: Stack(
-              children: <Widget>[
-                Center(child: CircularProgressIndicator(
-                    valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
-                )),
-                Image.network(
-                  widget.shots[itemIndex].images.two_x,
-                  fit: BoxFit.fill,
-                )
-              ],
-            ),
-          ),
+          Container(
+            color: Colors.blue,
+              child: Stack(
+                children: <Widget>[
+                  Center(
+                      child: CircularProgressIndicator(
+                      valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
+                  )),
+                  Image.network(
+                    widget.shots[itemIndex].images.two_x,
+                    fit: BoxFit.fill,
+                  )
+                ],
+              ),
+            )
     );
   }
 
