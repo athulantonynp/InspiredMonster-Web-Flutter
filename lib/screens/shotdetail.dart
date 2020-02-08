@@ -1,9 +1,12 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:monster/models/shot.dart';
 
 class ShotDetail extends StatefulWidget {
+
   Shot shot;
-  ShotDetail({this.shot}) : super();
+  List<Shot> shots;
+  ShotDetail({this.shot,this.shots}) : super();
 
   @override
   _ShotDetailState createState() => _ShotDetailState();
@@ -13,70 +16,37 @@ class _ShotDetailState extends State<ShotDetail> {
   @override
   Widget build(BuildContext context) {
     var imageWidth = getShotImageWidthForPreview(context);
-    return Scaffold(
-      body: Center(
-          child: Container(
-            width: imageWidth,
-            child: ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(24),
+    return Container(
+        child: buildCarousel(),
+    );
+  }
+
+  Widget buildCarousel(){
+    return CarouselSlider.builder(
+      itemCount: widget.shots.length,
+      enableInfiniteScroll: true,
+      enlargeCenterPage: true,
+
+      scrollDirection: Axis.horizontal,
+      itemBuilder: (BuildContext context, int itemIndex) =>
+
+          Center(
+            child: Stack(
               children: <Widget>[
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: imageWidth,
-                    height: (imageWidth * 3) / 4,
-                    child:Stack(
-                      children: <Widget>[
-                        Center(child: CircularProgressIndicator(
-                            valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
-                        )),
-                        Image.network(
-                          widget.shot.images.two_x,
-                          fit: BoxFit.fill,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 24, 0, 8),
-                          child: Text(
-                            widget.shot.title,
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Theme.of(context).indicatorColor),
-                            textAlign: TextAlign.left,
-                            softWrap: false,
-                          ),
-                        ),
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          removeAllHtmlTags(widget.shot.description),
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Theme.of(context).indicatorColor),
-                        ),
-                      )
-                    ],
-                  ),
+                Center(child: CircularProgressIndicator(
+                    valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
+                )),
+                Image.network(
+                  widget.shots[itemIndex].images.two_x,
+                  fit: BoxFit.fill,
                 )
               ],
             ),
           ),
-      ),
     );
   }
+
+
 
   String removeAllHtmlTags(String htmlText) {
     RegExp exp = RegExp(r"<[^>]*>", multiLine: true, caseSensitive: true);
@@ -116,4 +86,67 @@ class _ShotDetailState extends State<ShotDetail> {
 
     return 50;
   }
+
+
+/*  Center(
+  child: Container(
+  width: imageWidth,
+  child: ListView(
+  shrinkWrap: true,
+  padding: EdgeInsets.all(24),
+  children: <Widget>[
+  Align(
+  alignment: Alignment.center,
+  child: Container(
+  width: imageWidth,
+  height: (imageWidth * 3) / 4,
+  child:Stack(
+  children: <Widget>[
+  Center(child: CircularProgressIndicator(
+  valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
+  )),
+  Image.network(
+  widget.shot.images.two_x,
+  fit: BoxFit.fill,
+  )
+  ],
+  ),
+  ),
+  ),
+  Align(
+  alignment: Alignment.centerLeft,
+  child: Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: <Widget>[
+  Align(
+  alignment: Alignment.centerLeft,
+  child: Padding(
+  padding: EdgeInsets.fromLTRB(0, 24, 0, 8),
+  child: Text(
+  widget.shot.title,
+  style: TextStyle(
+  fontSize: 20,
+  color: Theme.of(context).indicatorColor),
+  textAlign: TextAlign.left,
+  softWrap: false,
+  ),
+  ),
+  ),
+  Align(
+  alignment: Alignment.centerLeft,
+  child: Text(
+  removeAllHtmlTags(widget.shot.description),
+  style: TextStyle(
+  fontSize: 14,
+  color: Theme.of(context).indicatorColor),
+  ),
+  )
+  ],
+  ),
+  )
+  ],
+  ),
+  ),
+  )*/
 }

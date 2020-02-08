@@ -15,7 +15,9 @@ class Portfolio extends StatefulWidget {
 }
 
 class PortfolioState extends State<Portfolio> {
+
   var ports = ApiManager().getCurrentShots();
+  var shots=List<Shot>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class PortfolioState extends State<Portfolio> {
         future: ports,
         builder: (BuildContext context, AsyncSnapshot<List<Shot>> snapshot) {
           if (snapshot.hasData) {
+            shots.addAll(snapshot.data);
             return GridView.builder(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 4),
               shrinkWrap: true,
@@ -99,7 +102,7 @@ class PortfolioState extends State<Portfolio> {
                         onTap: (){
                           Navigator.of(context).pop();
                         },
-                        child: ShotDetail(shot: shot),
+                        child: ShotDetail(shot: shot,shots: shots),
                       ),
                     );
                   },
