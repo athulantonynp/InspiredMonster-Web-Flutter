@@ -6,7 +6,8 @@ class ShotDetail extends StatefulWidget {
 
   Shot shot;
   List<Shot> shots;
-  ShotDetail({this.shot,this.shots}) : super();
+  int index;
+  ShotDetail({this.shot,this.shots,this.index}) : super();
 
   @override
   _ShotDetailState createState() => _ShotDetailState();
@@ -16,32 +17,35 @@ class _ShotDetailState extends State<ShotDetail> {
   @override
   Widget build(BuildContext context) {
     var imageWidth = getShotImageWidthForPreview(context);
-    return Container(
-      color: Colors.green,
-        child: buildCarousel(),
-    );
+    return  buildCarousel(imageWidth);
   }
 
-  Widget buildCarousel(){
+  Widget buildCarousel(double imageWidth){
     return CarouselSlider.builder(
-
-      itemCount: widget.shots.length,
+        itemCount: widget.shots.length,
+        aspectRatio: MediaQuery.of(context).size.width/MediaQuery.of(context).size.height,
       enableInfiniteScroll: true,
-      enlargeCenterPage: false,
+      enlargeCenterPage: true,
       scrollDirection: Axis.horizontal,
+      initialPage: widget.index,
       itemBuilder: (BuildContext context, int itemIndex) =>
 
           Container(
-            color: Colors.blue,
+            width: imageWidth,
+              height:(imageWidth * 3) / 4,
               child: Stack(
+                alignment:Alignment.center,
                 children: <Widget>[
                   Center(
                       child: CircularProgressIndicator(
                       valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
                   )),
                   Image.network(
+
                     widget.shots[itemIndex].images.two_x,
                     fit: BoxFit.fill,
+                    width: imageWidth,
+                    height: (imageWidth * 3) / 4,
                   )
                 ],
               ),

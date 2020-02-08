@@ -62,7 +62,7 @@ class PortfolioState extends State<Portfolio> {
               itemCount: snapshot.data.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  child: getShotCard(snapshot.data[index]),
+                  child: getShotCard(snapshot.data[index],index),
                   padding: EdgeInsets.fromLTRB(8, 8, 8, 8),
                 );
               },
@@ -83,7 +83,7 @@ class PortfolioState extends State<Portfolio> {
     );
   }
 
-  Widget getShotCard(Shot shot) {
+  Widget getShotCard(Shot shot,int index) {
     return  InkWell(
         child:ClipRRect(
           borderRadius: BorderRadius.circular(2.0),
@@ -102,7 +102,7 @@ class PortfolioState extends State<Portfolio> {
                         onTap: (){
                           Navigator.of(context).pop();
                         },
-                        child: ShotDetail(shot: shot,shots: shots),
+                        child: ShotDetail(shot: shot,shots: shots,index: index,),
                       ),
                     );
                   },
