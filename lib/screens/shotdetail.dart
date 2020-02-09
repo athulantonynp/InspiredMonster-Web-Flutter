@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:monster/models/shot.dart';
+import 'package:monster/utils/utils.dart';
 
 class ShotDetail extends StatefulWidget {
 
@@ -14,13 +15,31 @@ class ShotDetail extends StatefulWidget {
 }
 
 class _ShotDetailState extends State<ShotDetail> {
+
   @override
   Widget build(BuildContext context) {
-    var imageWidth = getShotImageWidthForPreview(context);
-    return  buildCarousel(imageWidth);
+
+    var slider=buildCarousel(widget,context);
+
+    return Scaffold(
+      body:  Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            child: slider,
+            flex: 13,
+          ),
+          Expanded(
+            child: renderControlls(slider),
+            flex: 1,
+          ),
+        ],
+      ),
+    );
   }
 
-  Widget buildCarousel(double imageWidth){
+   CarouselSlider buildCarousel(ShotDetail widget,BuildContext context){
+    var imageWidth = getShotImageWidthForPreview(context);
     return CarouselSlider.builder(
         itemCount: widget.shots.length,
         aspectRatio: MediaQuery.of(context).size.width/MediaQuery.of(context).size.height,
@@ -61,7 +80,7 @@ class _ShotDetailState extends State<ShotDetail> {
     return freeHtml;
   }
 
-  double getShotImageWidthForPreview(BuildContext context) {
+  static double getShotImageWidthForPreview(BuildContext context) {
     var maxwidth = MediaQuery.of(context).size.width;
     if (maxwidth > 800) {
       return 800;
@@ -92,6 +111,40 @@ class _ShotDetailState extends State<ShotDetail> {
     }
 
     return 50;
+  }
+
+  renderControlls(CarouselSlider slider) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(24, 12, 24, 12),
+      color: Theme.of(context).primaryColor,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          InkWell(
+            child: RotatedBox(quarterTurns: 2,child: Image.asset(Utils.getImageForWeb("ic_forward.png")),),
+            onTap: (){
+              setState(() {
+                slider.previousPage(duration: Duration(milliseconds: 300), curve: Curves.linear);
+
+              });
+            },
+          ),
+         InkWell(
+           child:  Image.asset(Utils.getImageForWeb("ic_close.png")),
+           onTap: (){Navigator.of(context).pop();},
+         ),
+          InkWell(
+            child: Image.asset(Utils.getImageForWeb("ic_forward.png")),
+            onTap: (){
+              setState(() {
+                slider.nextPage(duration: Duration(milliseconds: 300), curve: Curves.linear);
+              });
+            },
+          )
+        ],
+      ),
+    );
   }
 
 
