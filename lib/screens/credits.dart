@@ -6,7 +6,7 @@ class Credits extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-          padding: EdgeInsets.fromLTRB(16, 24, 16, 24),
+          padding: EdgeInsets.fromLTRB(16, 24, 0, 24),
           decoration: new BoxDecoration(
               color: Theme.of(context).primaryColor,
               borderRadius: new BorderRadius.all(Radius.circular(16))),
@@ -29,7 +29,10 @@ class Credits extends StatelessWidget{
                 style: TextStyle(
                     fontSize: 20,
                     color: Theme.of(context).indicatorColor,fontWeight: FontWeight.w500)),
-            Image.asset(Utils.getImageForWeb("close.png"),width: 40,height: 40,)
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 0, 24, 0),
+              child: Image.asset(Utils.getImageForWeb("close.png"),width: 40,height: 40),
+            )
           ],
         ),
 
@@ -71,10 +74,9 @@ class Credits extends StatelessWidget{
           Padding(
             padding: EdgeInsets.fromLTRB(8,0, 16, 0),
             child: Text(
-              text,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),
-            ) ,
-          )
-        ],
+                text,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),overflow: TextOverflow.ellipsis,),
+            ) 
+          ],
       ),
     );
   }
