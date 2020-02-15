@@ -31,8 +31,51 @@ class Credits extends StatelessWidget{
                     color: Theme.of(context).indicatorColor,fontWeight: FontWeight.w500)),
             Image.asset(Utils.getImageForWeb("close.png"),width: 40,height: 40,)
           ],
-        )
+        ),
+
+       Padding(
+         padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
+         child:  Text('Special Thanks to',
+             style: TextStyle(
+                 fontSize: 16,
+                 color: Theme.of(context).indicatorColor,fontWeight: FontWeight.w500)),
+       ),
+        getCreditItem("💻", "Athul Antony for developing this website pixel perfectly", context),
+        getCreditItem("🎧", " Spotify for the music playlist widget", context),
+        getCreditItem("😀", "Emojipedia for beautiful, free emoji’s", context),
+        getCreditItem("🏀", "Dribbble for the shots listing API", context),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
+          child:  Text('Featured In',
+              style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).indicatorColor,fontWeight: FontWeight.w500)),
+        ),
+
+        getCreditItem("🌐", "Itsallwidgets.com-An open list of apps built with Flutter", context),
       ],
+    );
+  }
+
+  Widget getCreditItem(String icon, String text,BuildContext context){
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 16, 16, 0),
+      child:  Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            icon,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),
+          ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(8,0, 16, 0),
+            child: Text(
+              text,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),
+            ) ,
+          )
+        ],
+      ),
     );
   }
 }
