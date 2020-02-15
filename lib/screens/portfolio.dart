@@ -31,7 +31,7 @@ class PortfolioState extends State<Portfolio> {
             flex: 13,
           ),
           Expanded(
-            child: BottomBar(),
+            child: BottomBar(showCredits: false,),
             flex: 1,
           ),
         ],

@@ -22,7 +22,7 @@ class AboutMeState extends State<AboutMe> {
             flex: 13,
           ),
           Expanded(
-            child: BottomBar(),
+            child: BottomBar(showCredits: true,),
             flex: 1,
           ),
         ],

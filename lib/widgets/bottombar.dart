@@ -1,8 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:monster/utils/utils.dart';
 import 'package:monster/widgets/ThemeInheritedWidget.dart';
 
 class BottomBar extends StatefulWidget{
+
+  final bool showCredits;
+
+  BottomBar({Key key, @required this.showCredits}): super(key:key);
+
   @override
   State<StatefulWidget> createState() {
     return BottomBarState();
@@ -32,13 +38,15 @@ class BottomBarState extends State<BottomBar>{
             children: <Widget>[
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text(
                     "© 2020 Inspired Monster",
                     style: TextStyle(color: Theme.of(context).indicatorColor),
                     textAlign: TextAlign.center,
-                  )
+                  ),
+
+                 widget.showCredits ? getCreditsWidget() : Container()
                 ],
               ),
               Align(
@@ -68,6 +76,19 @@ class BottomBarState extends State<BottomBar>{
         ],
       ),
     );
+  }
+
+
+  Widget getCreditsWidget() {
+    return InkWell(
+      onTap: (){},
+      child:Text(
+        "    · credits",
+        style: TextStyle(color: Theme.of(context).indicatorColor),
+        textAlign: TextAlign.center,
+      ) ,
+    );
+    
   }
 
 }

@@ -41,7 +41,7 @@ class HomeState extends State<Home> {
         Container(
           height: bottomBarHeight,
           width: width,
-          child: BottomBar(),
+          child: BottomBar(showCredits: false,),
         )
       ],
     );
