@@ -43,10 +43,13 @@ class Credits extends StatelessWidget{
                  fontSize: 16,
                  color: Theme.of(context).indicatorColor,fontWeight: FontWeight.w500)),
        ),
-        getCreditItem("💻", "Athul Antony for developing this website pixel perfectly", context),
-        getCreditItem("🎧", " Spotify for the music playlist widget", context),
-        getCreditItem("😀", "Emojipedia for beautiful, free emoji’s", context),
-        getCreditItem("🏀", "Dribbble for the shots listing API", context),
+        getCreditItem("💻", "Athul Antony"," for developing this website pixel perfectly", context,
+        "https://twitter.com/athulantonynp"),
+        getCreditItem("🎧", " Spotify"," for the music playlist widget", context,
+        "https://www.spotify.com/"),
+        getCreditItem("😀", "Emojipedia"," for beautiful, free emoji’s", context,
+        "https://emojipedia.org/"),
+        getCreditItem("🏀", "Dribbble"," for the shots listing API", context,"https://dribbble.com/inspired_monster"),
 
         Padding(
           padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
@@ -56,30 +59,48 @@ class Credits extends StatelessWidget{
                   color: Theme.of(context).indicatorColor,fontWeight: FontWeight.w500)),
         ),
 
-        getCreditItem("🌐", "Itsallwidgets.com-An open list of apps built with Flutter", context),
+        getCreditItem("🌐", "Itsallwidgets.com"," An open list of apps built with Flutter", context,
+        "https://itsallwidgets.com/inspired-monster-portfolio-website"),
       ],
     );
   }
 
-  Widget getCreditItem(String icon, String text,BuildContext context){
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, 16, 16, 0),
-      child:  Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            icon,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),
-          ),
-          Padding(
-            padding: EdgeInsets.fromLTRB(8,0, 16, 0),
-            child: Container(
-              width: MediaQuery.of(context).size.width-260,
-              child: Text(
-                text,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),overflow: TextOverflow.clip,),
+  Widget getCreditItem(String icon,String linkText, String text,BuildContext context,
+      String url){
+    return InkWell(
+      onTap: (){
+        Utils().launchURL(url);
+      },
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, 16, 16, 0),
+        child:  Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              icon,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),
             ),
+            Padding(
+                padding: EdgeInsets.fromLTRB(8,0, 16, 0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width-260,
+                  child:RichText(
+                    softWrap: true,
+                    maxLines: 8,
+                    text: TextSpan(
+                        children: <TextSpan>[
+
+                          TextSpan(text: linkText, style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor,
+                              decoration: TextDecoration.underline)),
+                          TextSpan(text: text, style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor))
+                        ]
+
+                    ),
+                  ),
+                )
             )
           ],
+        ),
       ),
     );
   }
