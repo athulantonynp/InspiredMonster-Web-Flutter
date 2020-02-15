@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:monster/screens/CreditsPopup.dart';
 import 'package:monster/utils/utils.dart';
 import 'package:monster/widgets/ThemeInheritedWidget.dart';
 
@@ -81,7 +82,9 @@ class BottomBarState extends State<BottomBar>{
 
   Widget getCreditsWidget() {
     return InkWell(
-      onTap: (){},
+      onTap: (){
+        Navigator.push(context, CreditsPopup());
+      },
       child:Text(
         "    · credits",
         style: TextStyle(color: Theme.of(context).indicatorColor),
