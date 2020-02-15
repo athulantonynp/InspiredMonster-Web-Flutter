@@ -73,9 +73,12 @@ class Credits extends StatelessWidget{
           ),
           Padding(
             padding: EdgeInsets.fromLTRB(8,0, 16, 0),
-            child: Text(
-                text,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),overflow: TextOverflow.ellipsis,),
-            ) 
+            child: Container(
+              width: MediaQuery.of(context).size.width-260,
+              child: Text(
+                text,style: TextStyle(fontSize: 16,color:Theme.of(context).indicatorColor),overflow: TextOverflow.clip,),
+            ),
+            )
           ],
       ),
     );
