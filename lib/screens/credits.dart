@@ -5,7 +5,13 @@ import 'package:monster/utils/utils.dart';
 class Credits extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+    var width=MediaQuery.of(context).size.width;
+    var height=MediaQuery.of(context).size.height;
+
+    var side=width*0.14;
+    var top=height*0.09;
     return Container(
+          margin: EdgeInsets.fromLTRB(side, top, side, top),
           padding: EdgeInsets.fromLTRB(16, 24, 0, 24),
           decoration: new BoxDecoration(
               color: Theme.of(context).cardColor,
@@ -18,6 +24,7 @@ class Credits extends StatelessWidget{
 
   Widget getCreditsContent(BuildContext context){
     return Column(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -92,7 +99,7 @@ class Credits extends StatelessWidget{
             Padding(
                 padding: EdgeInsets.fromLTRB(8,0, 16, 0),
                 child: Container(
-                  width: MediaQuery.of(context).size.width-260,
+                  width: MediaQuery.of(context).size.width/2,
                   child:RichText(
                     softWrap: true,
                     maxLines: 8,

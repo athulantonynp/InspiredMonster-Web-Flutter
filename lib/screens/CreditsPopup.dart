@@ -4,10 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:monster/screens/credits.dart';
 
 class CreditsPopup extends ModalRoute{
-  double top;
-  double bottom;
-  double left;
-  double right;
   Color bgColor;
 
 
@@ -35,31 +31,18 @@ class CreditsPopup extends ModalRoute{
       BuildContext context,
       Animation<double> animation,
       Animation<double> secondaryAnimation,) {
-    if (top == null) this.top = 40;
-    if (bottom == null) this.bottom = 40;
-    if (left == null) this.left = 60;
-    if (right == null) this.right = 60;
-
     return GestureDetector(
       onTap: () {
         Navigator.pop(context);
       },
       child: Material(
         type: MaterialType.transparency,
-        child: SafeArea(
-          bottom: true,
-          child: _buildOverlayContent(context),
-        ),
+        child:  _buildOverlayContent(context),
       ),
     );
   }
   Widget _buildOverlayContent(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(
-          bottom: this.bottom,
-          left: this.left,
-          right: this.right,
-          top: this.top),
       child: Credits(),
     );
   }
