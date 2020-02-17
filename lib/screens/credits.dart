@@ -8,7 +8,7 @@ class Credits extends StatelessWidget{
     return Container(
           padding: EdgeInsets.fromLTRB(16, 24, 0, 24),
           decoration: new BoxDecoration(
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).cardColor,
               borderRadius: new BorderRadius.all(Radius.circular(16))),
           child:SingleChildScrollView(
             child: getCreditsContent(context),
@@ -51,6 +51,8 @@ class Credits extends StatelessWidget{
         "https://emojipedia.org/"),
         getCreditItem("🏀", "Dribbble"," for the shots listing API", context,"https://dribbble.com/inspired_monster"),
 
+        getCreditItem("📸", "Unsplash"," for the Awesome pics", context,"https://unsplash.com/"),
+
         Padding(
           padding: EdgeInsets.fromLTRB(0, 32, 0, 0),
           child:  Text('Featured In',
@@ -61,6 +63,13 @@ class Credits extends StatelessWidget{
 
         getCreditItem("🌐", "Itsallwidgets.com"," An open list of apps built with Flutter", context,
         "https://itsallwidgets.com/inspired-monster-portfolio-website"),
+
+        Padding(
+          padding: EdgeInsets.fromLTRB(0, 60, 0, 0),
+          child: Text("All other content © 2020 Inspired Monster",style: TextStyle(
+              color: Theme.of(context).indicatorColor,fontSize: 16
+          ),),
+        )
       ],
     );
   }

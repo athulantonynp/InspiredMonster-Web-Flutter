@@ -35,6 +35,7 @@ class ThemeUtils {
         indicatorColor: Colors.white,
         selectedRowColor: ColorUtils.fromHex("#181818"),
         unselectedWidgetColor: ColorUtils.fromHex("#F2000000"),
+        cardColor: ColorUtils.fromHex("#2A2A2A"),
         appBarTheme: AppBarTheme(
           elevation: 4
         ),
@@ -49,6 +50,7 @@ class ThemeUtils {
       canvasColor: Colors.transparent,
       bottomAppBarColor: ColorUtils.fromHex("#1A000000"),
       buttonColor: Colors.white,
+      cardColor: ColorUtils.fromHex("#FFFFFF"),
       appBarTheme: AppBarTheme(
           elevation: 4
         ),

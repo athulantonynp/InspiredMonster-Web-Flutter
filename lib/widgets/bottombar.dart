@@ -86,7 +86,7 @@ class BottomBarState extends State<BottomBar>{
         Navigator.push(context, CreditsPopup());
       },
       child:Text(
-        "    · credits",
+        "    · Credits",
         style: TextStyle(color: Theme.of(context).indicatorColor),
         textAlign: TextAlign.center,
       ) ,
