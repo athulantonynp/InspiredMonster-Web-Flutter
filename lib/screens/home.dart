@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import 'package:monster/utils/utils.dart';
 import 'package:monster/widgets/bottombar.dart';
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html';
+import 'dart:ui' as ui;
 
 class Home extends StatefulWidget {
   @override
@@ -13,6 +15,13 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+
+  @override
+  void initState() {
+    ui.platformViewRegistry.registerViewFactory('iframe', (int viewId) => IFrameElement() ..src="https://open.spotify.com/embed?uri=spotify%3Aplaylist%3A71LsMvu7RimgBrMInifH2Y");
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,7 +83,7 @@ class HomeState extends State<Home> {
 
   Widget getHomeContent(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         getIntroText(context),
@@ -142,13 +151,34 @@ class HomeState extends State<Home> {
   Widget getImage(BuildContext context) {
     var responsiveWidth = getComputerWidth(MediaQuery.of(context).size.width);
     return Container(
-      width: double.infinity,
-      child: SizedBox(
-        width: responsiveWidth,
-        height: responsiveWidth,
-        child: Image.asset(Utils.getImageForWeb("ic_computer.png")),
-      ),
+        child:  Container(
+            width: responsiveWidth,
+            height: responsiveWidth,
+            child: GestureDetector(
+              child: Image.asset(Utils.getImageForWeb("ic_computer.png")),
+              onTapDown: (details){
+                _handleTapDown(details, responsiveWidth);
+              },
+            ),
+        ),
     );
+  }
+
+  void _handleTapDown(TapDownDetails details,double width) {
+    final RenderBox referenceBox = context.findRenderObject();
+    setState(() {
+      var location=details.localPosition;
+     var coveredy=location.dy;
+     var coveredx=location.dx;
+     //print(coveredy/width);
+      if((coveredy/width)*100>=70 && ((coveredx/width)*100)<=25){
+        showDialog(context: context,
+        builder: (BuildContext ctxt){
+          return Dialog(
+            child: Container(width: width, height: width, child: HtmlElementView(viewType: 'iframe')));
+        });
+      }
+    });
   }
 
   double getComputerWidth(double width) {
