@@ -51,12 +51,9 @@ class _ShotDetailState extends State<ShotDetail> {
         scrollDirection: Axis.horizontal,
         initialPage: widget.index,
         itemBuilder: (BuildContext context, int itemIndex) => Container(
-              margin: EdgeInsets.all(24),
+              margin: EdgeInsets.fromLTRB(24, 24, 24, 0),
               padding: EdgeInsets.all(0),
               child: SingleChildScrollView(
-                child: Container(
-                    height: fullHeight,
-                    width: fullwidth,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,8 +93,9 @@ class _ShotDetailState extends State<ShotDetail> {
                         ),
                         Align(
                           alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(24, 0, 24, 8),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                            width: imageWidth,
                             child: Text(
                               removeAllHtmlTags(
                                   widget.shots[itemIndex].description),
@@ -107,8 +105,7 @@ class _ShotDetailState extends State<ShotDetail> {
                             ),
                           ),
                         )
-                      ],
-                    )),
+                      ]),
               ),
             ));
   }
