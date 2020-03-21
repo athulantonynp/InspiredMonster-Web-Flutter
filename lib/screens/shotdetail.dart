@@ -42,7 +42,7 @@ class _ShotDetailState extends State<ShotDetail> {
     var fullwidth = MediaQuery.of(context).size.width;
     var fullHeight = MediaQuery.of(context).size.height;
     var imageWidth = getShotImageWidthForPreview(context);
-
+    var isMobile=Utils.isMobileView(context);
     return CarouselSlider.builder(
         height: fullHeight,
         itemCount: widget.shots.length,
@@ -54,58 +54,61 @@ class _ShotDetailState extends State<ShotDetail> {
               margin: EdgeInsets.fromLTRB(24, 24, 24, 0),
               padding: EdgeInsets.all(0),
               child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: imageWidth,
-                          height: (imageWidth * 3) / 4,
-                          child: Stack(
-                            children: <Widget>[
-                              Center(
-                                  child: CircularProgressIndicator(
-                                      valueColor:
-                                      new AlwaysStoppedAnimation<Color>(
-                                          Theme.of(context).indicatorColor))),
-                              Image.network(
-                                widget.shots[itemIndex].images.two_x,
-                                fit: BoxFit.fill,
+                    child:Container(
+                      width: imageWidth,
+                      child:  Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Container(
+                              width: imageWidth,
+                              height: (imageWidth * 3) / 4,
+                              child: Stack(
+                                children: <Widget>[
+                                  Center(
+                                      child: CircularProgressIndicator(
+                                          valueColor:
+                                          new AlwaysStoppedAnimation<Color>(
+                                              Theme.of(context).indicatorColor))),
+                                  Image.network(
+                                    widget.shots[itemIndex].images.two_x,
+                                    fit: BoxFit.fill,
+                                    width: imageWidth,
+                                    height: (imageWidth * 3) / 4,
+                                  )
+                                ],
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(0, 24, 0, 8),
+                                child: Text(
+                                  widget.shots[itemIndex].title,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Theme.of(context).indicatorColor),
+                                  textAlign: TextAlign.left,
+                                  softWrap: false,
+                                ),
+                              ),
+                            ),
+                            Align(
+                              alignment: isMobile? Alignment.center : Alignment.centerLeft  ,
+                              child: Container(
+                                padding: EdgeInsets.fromLTRB(0, 0, 0, 8),
                                 width: imageWidth,
-                                height: (imageWidth * 3) / 4,
-                              )
-                            ],
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Padding(
-                            padding: EdgeInsets.fromLTRB(0, 24, 0, 8),
-                            child: Text(
-                              widget.shots[itemIndex].title,
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  color: Theme.of(context).indicatorColor),
-                              textAlign: TextAlign.left,
-                              softWrap: false,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(0, 0, 0, 8),
-                            width: imageWidth,
-                            child: Text(
-                              removeAllHtmlTags(
-                                  widget.shots[itemIndex].description),
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  color: Theme.of(context).indicatorColor),
-                            ),
-                          ),
-                        )
-                      ]),
+                                child: Text(
+                                  removeAllHtmlTags(
+                                      widget.shots[itemIndex].description),
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      color: Theme.of(context).indicatorColor),
+                                ),
+                              ),
+                            )
+                          ]),
+                    ),
               ),
             ));
   }
