@@ -31,5 +31,5 @@ class Utils {
       return true;
   }
 
-  static var aspectRatioWidthsSixteenNine=[40,160,256,320,384,400,512,640,800,832];
+  static var aspectRatioWidthsSixteenNine=[40,100,140,160,200,256,300,320,360,384,400,460,512,540,600,640,700,720,780,800,832];
 }

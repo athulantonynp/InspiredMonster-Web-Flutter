@@ -52,7 +52,7 @@ class _ShotDetailState extends State<ShotDetail> {
         scrollDirection: Axis.horizontal,
         initialPage: widget.index,
         itemBuilder: (BuildContext context, int itemIndex) => Container(
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
               padding: EdgeInsets.all(0),
               child: SingleChildScrollView(
                     child:Container(
@@ -74,7 +74,7 @@ class _ShotDetailState extends State<ShotDetail> {
                                               Theme.of(context).indicatorColor))),
                                   Image.network(
                                     widget.shots[itemIndex].images.two_x,
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.contain,
                                     width: imageWidth,
                                     height: (imageWidth * 3) /4,
                                   )
@@ -125,7 +125,13 @@ class _ShotDetailState extends State<ShotDetail> {
     var maxwidth = MediaQuery.of(context).size.width;
     //print(maxwidth);
     var totalSize=Utils.aspectRatioWidthsSixteenNine.length;
-    double returnWidth=800;
+    if(maxwidth<=800){
+      return maxwidth-40.toDouble();
+    }else{
+      return 800.toDouble();
+    }
+
+  /*  double returnWidth=800;
 
     for(int i=0;i<totalSize;i++){
       var leastIndex=Utils.aspectRatioWidthsSixteenNine[i];
@@ -144,7 +150,7 @@ class _ShotDetailState extends State<ShotDetail> {
         returnWidth=leastIndex.toDouble();
       }
     }
-    return returnWidth;
+    return returnWidth;*/
   }
 
   renderControlls(CarouselSlider slider) {
