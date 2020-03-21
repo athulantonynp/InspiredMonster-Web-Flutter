@@ -74,7 +74,7 @@ class PortfolioState extends State<Portfolio> {
                 height: 40,
                 child: CircularProgressIndicator(
                     valueColor:
-                        new AlwaysStoppedAnimation<Color>(Colors.white)),
+                        new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)),
               ),
             );
           }

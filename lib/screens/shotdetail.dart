@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:monster/models/shot.dart';
@@ -37,51 +39,49 @@ class _ShotDetailState extends State<ShotDetail> {
   }
 
   CarouselSlider buildCarousel(ShotDetail widget, BuildContext context) {
+    var fullwidth = MediaQuery.of(context).size.width;
+    var fullHeight = MediaQuery.of(context).size.height;
     var imageWidth = getShotImageWidthForPreview(context);
-    var residueSpace = (MediaQuery.of(context).size.width - imageWidth) / 4;
+
     return CarouselSlider.builder(
+        height: fullHeight,
         itemCount: widget.shots.length,
-        aspectRatio: MediaQuery.of(context).size.width / MediaQuery.of(context).size.height,
         enableInfiniteScroll: true,
-        enlargeCenterPage:false,
+        enlargeCenterPage: false,
         scrollDirection: Axis.horizontal,
         initialPage: widget.index,
         itemBuilder: (BuildContext context, int itemIndex) => Container(
-              margin: EdgeInsets.fromLTRB(residueSpace, 0, residueSpace, 0),
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.all(24),
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      width: imageWidth,
-                      height: (imageWidth * 3) / 4,
-                      child:Stack(
-                        children: <Widget>[
-                          Center(child: CircularProgressIndicator(
-                              valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).indicatorColor)
-                          )),
-                          Image.network(
-                            widget.shots[itemIndex].images.two_x,
-                            fit: BoxFit.fill,
-                            width: imageWidth,
-                            height: (imageWidth*3)/4,
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
+              margin: EdgeInsets.all(24),
+              padding: EdgeInsets.all(0),
+              child: SingleChildScrollView(
+                child: Container(
+                    height: fullHeight,
+                    width: fullwidth,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
+                        Container(
+                          width: imageWidth,
+                          height: (imageWidth * 3) / 4,
+                          child: Stack(
+                            children: <Widget>[
+                              Center(
+                                  child: CircularProgressIndicator(
+                                      valueColor:
+                                      new AlwaysStoppedAnimation<Color>(
+                                          Theme.of(context).indicatorColor))),
+                              Image.network(
+                                widget.shots[itemIndex].images.two_x,
+                                fit: BoxFit.fill,
+                                width: imageWidth,
+                                height: (imageWidth * 3) / 4,
+                              )
+                            ],
+                          ),
+                        ),
                         Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.center,
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(0, 24, 0, 8),
                             child: Text(
@@ -95,18 +95,20 @@ class _ShotDetailState extends State<ShotDetail> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            removeAllHtmlTags(widget.shots[itemIndex].description),
-                            style: TextStyle(
-                                fontSize: 14,
-                                color: Theme.of(context).indicatorColor),
+                          alignment: Alignment.center,
+                          child: Padding(
+                            padding: EdgeInsets.fromLTRB(24, 0, 24, 8),
+                            child: Text(
+                              removeAllHtmlTags(
+                                  widget.shots[itemIndex].description),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).indicatorColor),
+                            ),
                           ),
                         )
                       ],
-                    ),
-                  )
-                ],
+                    )),
               ),
             ));
   }
@@ -119,8 +121,9 @@ class _ShotDetailState extends State<ShotDetail> {
 
   static double getShotImageWidthForPreview(BuildContext context) {
     var maxwidth = MediaQuery.of(context).size.width;
-    if (maxwidth > 800) {
-      return 800;
+    print(maxwidth);
+    if (maxwidth > 800 && maxwidth < 1100) {
+      return 700;
     }
 
     if (maxwidth <= 800 && maxwidth > 400) {
@@ -147,7 +150,7 @@ class _ShotDetailState extends State<ShotDetail> {
       return 100;
     }
 
-    return 50;
+    return 800;
   }
 
   renderControlls(CarouselSlider slider) {
