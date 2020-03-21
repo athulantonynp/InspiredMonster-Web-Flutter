@@ -18,7 +18,8 @@ class HomeState extends State<Home> {
 
   @override
   void initState() {
-    ui.platformViewRegistry.registerViewFactory('iframe', (int viewId) => IFrameElement() ..src="https://open.spotify.com/embed?uri=spotify%3Aplaylist%3A71LsMvu7RimgBrMInifH2Y");
+    ui.platformViewRegistry.registerViewFactory('iframe', (int viewId) => IFrameElement()
+      ..src="https://open.spotify.com/embed?uri=spotify%3Aplaylist%3A71LsMvu7RimgBrMInifH2Y"..style.border = 'none');
     super.initState();
   }
 
@@ -170,12 +171,19 @@ class HomeState extends State<Home> {
       var location=details.localPosition;
      var coveredy=location.dy;
      var coveredx=location.dx;
-     //print(coveredy/width);
       if((coveredy/width)*100>=70 && ((coveredx/width)*100)<=25){
         showDialog(context: context,
         builder: (BuildContext ctxt){
           return Dialog(
-            child: Container(width: width, height: width, child: HtmlElementView(viewType: 'iframe')));
+            backgroundColor: Colors.black,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(8.0))
+            ),
+            child: Container(
+                color: Theme.of(context).backgroundColor,
+                width: width,
+                height: width,
+                child: HtmlElementView(viewType: 'iframe')));
         });
       }
     });
