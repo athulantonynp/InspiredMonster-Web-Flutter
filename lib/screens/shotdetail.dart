@@ -43,6 +43,7 @@ class _ShotDetailState extends State<ShotDetail> {
     var fullHeight = MediaQuery.of(context).size.height;
     var imageWidth = getShotImageWidthForPreview(context);
     var isMobile=Utils.isMobileView(context);
+    var marginWidth=(fullwidth-imageWidth)/2;
     return CarouselSlider.builder(
         height: fullHeight,
         itemCount: widget.shots.length,
@@ -51,11 +52,12 @@ class _ShotDetailState extends State<ShotDetail> {
         scrollDirection: Axis.horizontal,
         initialPage: widget.index,
         itemBuilder: (BuildContext context, int itemIndex) => Container(
-              margin: EdgeInsets.fromLTRB(24, 24, 24, 0),
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
               padding: EdgeInsets.all(0),
               child: SingleChildScrollView(
                     child:Container(
                       width: imageWidth,
+                      height: fullHeight,
                       child:  Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +76,7 @@ class _ShotDetailState extends State<ShotDetail> {
                                     widget.shots[itemIndex].images.two_x,
                                     fit: BoxFit.fill,
                                     width: imageWidth,
-                                    height: (imageWidth * 3) / 4,
+                                    height: (imageWidth * 3) /4,
                                   )
                                 ],
                               ),
@@ -121,36 +123,28 @@ class _ShotDetailState extends State<ShotDetail> {
 
   static double getShotImageWidthForPreview(BuildContext context) {
     var maxwidth = MediaQuery.of(context).size.width;
-    print(maxwidth);
-    if (maxwidth > 800 && maxwidth < 1100) {
-      return 700;
-    }
+    //print(maxwidth);
+    var totalSize=Utils.aspectRatioWidthsSixteenNine.length;
+    double returnWidth=800;
 
-    if (maxwidth <= 800 && maxwidth > 400) {
-      return 400;
-    }
+    for(int i=0;i<totalSize;i++){
+      var leastIndex=Utils.aspectRatioWidthsSixteenNine[i];
+      var nextIndex=-1;
+      if(i!=totalSize-1){
+        nextIndex=Utils.aspectRatioWidthsSixteenNine[i+1];
+      }
 
-    if (maxwidth <= 400 && maxwidth > 350) {
-      return 350;
-    }
-    if (maxwidth <= 350 && maxwidth > 300) {
-      return 300;
-    }
-    if (maxwidth <= 300 && maxwidth > 250) {
-      return 250;
-    }
-    if (maxwidth <= 250 && maxwidth > 200) {
-      return 200;
-    }
-    if (maxwidth <= 200 && maxwidth > 150) {
-      return 150;
-    }
+      if(nextIndex!=-1){
+          if(maxwidth>leastIndex && maxwidth<nextIndex){
+            returnWidth=leastIndex.toDouble();
+            break;
 
-    if (maxwidth <= 150 && maxwidth > 100) {
-      return 100;
+          }
+      }else{
+        returnWidth=leastIndex.toDouble();
+      }
     }
-
-    return 800;
+    return returnWidth;
   }
 
   renderControlls(CarouselSlider slider) {
