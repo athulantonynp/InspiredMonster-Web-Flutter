@@ -179,11 +179,28 @@ class HomeState extends State<Home> {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(8.0))
             ),
-            child: Container(
-                color: Theme.of(context).backgroundColor,
-                width: width,
-                height: width,
-                child: HtmlElementView(viewType: 'iframe')));
+            child: Stack(
+              children: <Widget>[
+                Container(
+                  color: Theme.of(context).backgroundColor,
+                  width: width,
+                  height: width,
+                  child: Center(
+                    child: Container(
+                      width: 48,
+                      height: 48,
+                      child:  Image.asset(Utils.getImageForWeb("spotify.png")),
+                    ),
+                  ) ,
+                ),
+                
+                Container(
+                    width: width,
+                    height: width,
+                    child: HtmlElementView(viewType: 'iframe'))
+              ],
+            )
+          );
         });
       }
     });
